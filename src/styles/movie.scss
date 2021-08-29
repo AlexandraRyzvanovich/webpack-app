@@ -1,0 +1,22 @@
+.movie-wrapper {
+  display: flow-root;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+img {
+  width: 420px;
+  height: 520px;
+}
+.description-wrapper {
+  display: flex;
+  justify-content: space-between;
+  color: #555555;
+}
+
+.year {
+  border: 1px #ffffff ridge;
+  width: 46px;
+  height: 23px;
+  display: flex;
+}

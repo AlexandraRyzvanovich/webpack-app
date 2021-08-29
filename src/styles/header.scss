@@ -1,0 +1,34 @@
+.header {
+  color: #fff;
+  padding: 1rem;
+  position: relative;
+  display: flex;
+  height: 300px;
+  padding-bottom: 15px;
+}
+.header::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+  height: 300px;
+  filter: blur(4px);
+  background-image: url(https://www.onlinekosten.de/bilder/netflix-oberflaeche_0502w600_8602.jpg);
+}
+
+.button-add {
+  position: absolute;
+  right: 50px;
+  width: 165px;
+  height: 38px;
+  border-radius: 5px;
+  background-color: #fff;
+  opacity: 0.2;
+  outline: none;
+  border: none;
+  color: #f65261;
+  font-weight: 400;
+}
