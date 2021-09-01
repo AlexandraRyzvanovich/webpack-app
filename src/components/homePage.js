@@ -1,13 +1,11 @@
 import React from "react";
-import MovieList from "./movieList";
-import MovieSorter from "./movieSorter";
 import "./../styles/movieList.scss";
+import MovieListContainer from "./movieListContainer";
 
 function HomePage() {
   return (
     <div className="home-wrapper">
-      <MovieSorter />
-      <MovieList />
+      <MovieListContainer />
     </div>
   );
 }

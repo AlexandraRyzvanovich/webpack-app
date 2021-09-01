@@ -2,8 +2,16 @@
   display: flex;
   justify-content: space-between;
   padding-bottom: 20px;
+  position: relative;
 }
-
+// .list-header::after {
+//   content: "";
+//   width: 96%;
+//   height: 4px;
+//   background-color: #424242;
+//   display: flex;
+//   margin: auto;
+// }
 .buttons-left-wrapper {
   padding-left: 2%;
   padding-top: 1%;
@@ -11,6 +19,7 @@
   display: flex;
   justify-content: space-between;
 }
+
 .buttons-rigth-wrapper {
   padding-right: 2%;
   padding-top: 1%;
@@ -19,17 +28,39 @@
   justify-content: space-between;
 }
 
-.line {
-  width: 96%;
-  height: 4px;
-  background-color: #424242;
-  display: flex;
-  margin: auto;
-}
-
 button {
   background-color: transparent;
   border: none;
   color: white;
   width: 150px;
+}
+
+button:active {
+  padding-top: 2px;
+
+  padding-left: 2px;
+}
+
+.underline {
+  text-decoration: none;
+}
+
+.list-header:after {
+  position: absolute;
+  content: "";
+  height: 2px;
+  bottom: -4px;
+
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  width: 96%;
+  background: #555555;
+
+  transition: 0.5s;
+}
+
+.underline:hover:after {
+  width: 80%;
+  background: orange;
 }

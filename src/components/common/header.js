@@ -7,13 +7,13 @@ import "./../../styles/common.scss";
 
 function Header() {
   return (
-    <head class="header">
+    <header class="header">
       <Logo />
       <button type="submit" className="button-add">
         <p>+ ADD MOVIE</p>
       </button>
       <Search />
-    </head>
+    </header>
   );
 }
 export default Header;
