@@ -1,8 +1,4 @@
-import React from "react";
-import { Component } from "react";
-import Movie from "../components/movieComponent.js";
-
-class MovieService extends Component {
+class MovieService {
   static getAllMovies = () => {
     debugger;
     let moviesList = [];
