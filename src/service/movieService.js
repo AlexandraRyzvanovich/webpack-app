@@ -1,6 +1,7 @@
+import React, { Component } from "react";
+
 class MovieService {
   static getAllMovies = () => {
-    debugger;
     let moviesList = [];
     moviesList.push({
       img: "https://www.kino-teatr.ru/movie/posters/big/1/32751.jpg",

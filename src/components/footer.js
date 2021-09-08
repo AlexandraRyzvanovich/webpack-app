@@ -1,7 +1,7 @@
 import React from "react";
 import Logo from "./logo";
-import "./../../styles/footer.scss";
-import "./../../styles/common.scss";
+import "./../styles/footer.scss";
+import "./../styles/common.scss";
 
 function Footer() {
   return (

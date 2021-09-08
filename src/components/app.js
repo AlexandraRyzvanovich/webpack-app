@@ -1,18 +1,15 @@
 import React, { Component } from "react";
-import { Fragment } from "react";
 
 import "./../styles/app.scss";
-import ErrorBoundary from "./common/errorBoundary";
-import HomePage from "./homePage";
-import Header from "./common/header";
-import Footer from "./common/footer";
+import ErrorBoundary from "./errorBoundary";
+import Footer from "./footer";
+import MovieAppContainer from "./movieAppContainer";
 
 class App extends Component {
   render() {
     return (
       <ErrorBoundary>
-        <Header />
-        <HomePage />
+        <MovieAppContainer />
         <Footer />
       </ErrorBoundary>
     );
