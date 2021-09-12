@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
 
 class DeletePopup extends Component {
   render() {
-    if (!this.props.isOpened) {
+    if (this.props.isOpened) {
       return (
         <div className="popup-box">
           <div className="box">

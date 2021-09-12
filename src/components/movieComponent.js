@@ -14,6 +14,8 @@ class Movie extends Component {
       isEditOpened: false,
       isDeleteOpened: false,
     };
+
+    //this.handleTogglePopup = this.handleTogglePopup.bind(this);
   }
 
   toggleDropdown = () => {
@@ -23,7 +25,7 @@ class Movie extends Component {
     });
   };
 
-  togglePopup = () => {
+  handleTogglePopup = () => {
     let show = this.state.showPopup;
     this.setState({
       showPopup: !show,
@@ -51,14 +53,14 @@ class Movie extends Component {
           <div>
             <img src={this.props.img}></img>
             <div class="dropdown">
-              <ul
+              <span
                 class="dropbtn icons btn-right showLeft"
-                onclick={this.toggleDropdown}
+                onClick={this.handleTogglePopup}
               >
                 <li></li>
                 <li></li>
                 <li></li>
-              </ul>
+              </span>
               <div id="myDropdown" class="dropdown-content">
                 <a href="#home">Home</a>
                 <a href="#about">About</a>

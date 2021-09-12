@@ -14,7 +14,7 @@ class AddPopup extends Component {
           <div className="box">
             <div className="add-popup-header">
               <div>
-                <span className="close-icon" onClick={this.props.onClose}>
+                <span className="close" onClick={this.props.onClose}>
                   x
                 </span>
               </div>

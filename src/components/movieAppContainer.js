@@ -19,10 +19,17 @@ class MovieAppContainer extends Component {
     this.handleGetFilms();
   }
 
-  togglePopup = (isOpened) => {
+  togglePopup = () => {
+    let state = this.state.isOpened;
+
     this.setState({
-      isOpened: !isOpened,
+      isOpened: !state,
     });
+    // this.setState((state) => {
+    //   return {
+    //     isOpened: !state.isOpened,
+    //   };
+    // });
   };
 
   handleGetFilms = () => {
