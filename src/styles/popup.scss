@@ -10,20 +10,19 @@
 }
 
 .box {
-  position: relative;
-  width: 35%;
-  margin: 0 auto;
-  margin-top: 10px;
+  position: absolute;
+  left: 25%;
+  right: 25%;
+  top: 20%;
+  bottom: 20%;
+  margin: auto;
   background: #232323;
+  width: 35%;
   padding: 20px;
   overflow: auto;
-  display: flex;
-  flex-direction: column;
-  max-height: 90%;
 }
 
 .close-icon {
-  content: "x";
   cursor: pointer;
   font-size: 40px;
   background: none;
@@ -145,4 +144,16 @@ button:active {
 }
 .close:after {
   transform: rotate(-45deg);
+}
+.box-delete {
+  position: absolute;
+  left: 25%;
+  right: 25%;
+  top: 20%;
+  bottom: 45%;
+  margin: auto;
+  background: #232323;
+  width: 35%;
+  padding: 16px;
+  overflow: auto;
 }

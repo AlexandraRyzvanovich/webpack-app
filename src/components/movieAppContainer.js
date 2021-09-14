@@ -47,7 +47,7 @@ class MovieAppContainer extends Component {
   };
 
   handleAdd = () => {
-    this.handleGetFilms();
+    this.togglePopup();
   };
 
   getList(moviesList) {
@@ -76,7 +76,12 @@ class MovieAppContainer extends Component {
           onGetFilms={this.handleGetFilms}
           items={this.state.items}
         />
-        <AddPopup isOpened={this.state.isOpened} onClose={this.togglePopup} />
+
+        <AddPopup
+          isOpened={this.state.isOpened}
+          onClose={this.togglePopup}
+          onSave={this.handleAdd}
+        />
       </>
     );
   }

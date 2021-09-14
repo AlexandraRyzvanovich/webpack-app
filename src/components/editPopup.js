@@ -3,7 +3,7 @@ import { Component } from "react";
 
 import "./../styles/header.scss";
 import "./../styles/common.scss";
-import "./../styles/addPopup.scss";
+import "./../styles/popup.scss";
 import PropTypes from "prop-types";
 
 class EditPopup extends Component {
@@ -14,9 +14,7 @@ class EditPopup extends Component {
           <div className="box">
             <div className="add-popup-header">
               <div>
-                <span className="close" onClick={this.props.onClose}>
-                  x
-                </span>
+                <span className="close" onClick={this.props.onClose} />
               </div>
               <div className="title-wrapper">
                 <p className="title">EDIT MOVIE</p>
@@ -76,7 +74,11 @@ class EditPopup extends Component {
                     RESET
                   </button>
                 </div>
-                <button type="submit" className="button-submit">
+                <button
+                  type="submit"
+                  className="button-submit"
+                  onClick={this.props.onClose}
+                >
                   SUBMIT
                 </button>
               </div>

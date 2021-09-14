@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import "./../styles/movie.scss";
-import "./../styles/editPopup.scss";
+import "./../styles/popup.scss";
 import EditPopup from "./editPopup";
 import DeletePopup from "./deletePopup";
 
@@ -9,40 +9,24 @@ class Movie extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showDropdown: false,
-      showPopup: false,
       isEditOpened: false,
       isDeleteOpened: false,
     };
-
-    //this.handleTogglePopup = this.handleTogglePopup.bind(this);
   }
 
-  toggleDropdown = () => {
-    let show = this.state.showDropdown;
-    this.setState({
-      showDropdown: !show,
-    });
-  };
-
-  handleTogglePopup = () => {
-    let show = this.state.showPopup;
-    this.setState({
-      showPopup: !show,
-    });
-  };
-
   toggleEdit = () => {
-    let show = this.state.isEditOpened;
+    debugger;
+    let showEdit = this.state.isEditOpened;
     this.setState({
-      isEditOpened: !show,
+      isEditOpened: !showEdit,
     });
   };
 
   toggleDelete = () => {
-    let show = this.state.isDeleteOpened;
+    debugger;
+    let showDelete = this.state.isDeleteOpened;
     this.setState({
-      isDeleteOpened: !show,
+      isDeleteOpened: !showDelete,
     });
   };
 
@@ -52,19 +36,20 @@ class Movie extends Component {
         <div className="movie-wrapper">
           <div>
             <img src={this.props.img}></img>
-            <div class="dropdown">
-              <span
-                class="dropbtn icons btn-right showLeft"
-                onClick={this.handleTogglePopup}
-              >
-                <li></li>
-                <li></li>
-                <li></li>
-              </span>
-              <div id="myDropdown" class="dropdown-content">
-                <a href="#home">Home</a>
-                <a href="#about">About</a>
-                <a href="#contact">Contact</a>
+            <div class="dropdown-container" tabindex="-1">
+              <div class="three-dots"></div>
+              <div class="dropdown">
+                <div className="three-dots-close-wrapper">
+                  <span className="three-dots-close" />
+                </div>
+                <div className="movie-buttons-wrapper">
+                  <div className="dropdown-buttons" onClick={this.toggleEdit}>
+                    <p>Edit</p>
+                  </div>
+                  <div className="dropdown-buttons" onClick={this.toggleDelete}>
+                    <p>Delete</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -81,7 +66,7 @@ class Movie extends Component {
         <EditPopup
           onSave={this.props.handleSave}
           isOpened={this.state.isEditOpened}
-          onClose={this.toggleDelete}
+          onClose={this.toggleEdit}
           movieId={this.props.id}
           movieTitle={this.props.name}
           movieReleaseDate={this.props.year}
@@ -90,7 +75,11 @@ class Movie extends Component {
           movieOverview={this.props.overview}
           movieRuntime={this.props.runtime}
         />
-        <DeletePopup />
+        <DeletePopup
+          onSave={this.props.handleDelete}
+          isOpened={this.state.isDeleteOpened}
+          onClose={this.toggleDelete}
+        />
       </>
     );
   }

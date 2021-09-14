@@ -3,7 +3,7 @@ import { Component } from "react";
 
 import "./../styles/header.scss";
 import "./../styles/common.scss";
-import "./../styles/addPopup.scss";
+import "./../styles/popup.scss";
 import PropTypes from "prop-types";
 
 class DeletePopup extends Component {
@@ -11,12 +11,10 @@ class DeletePopup extends Component {
     if (this.props.isOpened) {
       return (
         <div className="popup-box">
-          <div className="box">
+          <div className="box-delete">
             <div className="add-popup-header">
               <div>
-                <span className="close-icon" onClick={this.props.onClose}>
-                  x
-                </span>
+                <span className="close" onClick={this.props.onClose} />
               </div>
               <div className="title-wrapper">
                 <p className="title">DELETE MOVIE</p>
@@ -28,11 +26,19 @@ class DeletePopup extends Component {
             <div className="buttons-wrapper">
               <div className="button-wrapper">
                 <div className="button-reset-wrapper">
-                  <button type="submit" className="button-reset">
+                  <button
+                    type="submit"
+                    className="button-reset"
+                    onClick={this.props.onClose}
+                  >
                     RESET
                   </button>
                 </div>
-                <button type="submit" className="button-submit">
+                <button
+                  type="submit"
+                  className="button-submit"
+                  onClick={this.props.onClose}
+                >
                   SUBMIT
                 </button>
               </div>
