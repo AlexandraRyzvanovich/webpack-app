@@ -5,7 +5,7 @@ import "./../styles/popup.scss";
 import EditPopup from "./editPopup";
 import DeletePopup from "./deletePopup";
 
-class Movie extends Component {
+class MovieComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,7 +15,6 @@ class Movie extends Component {
   }
 
   toggleEdit = () => {
-    debugger;
     let showEdit = this.state.isEditOpened;
     this.setState({
       isEditOpened: !showEdit,
@@ -23,7 +22,6 @@ class Movie extends Component {
   };
 
   toggleDelete = () => {
-    debugger;
     let showDelete = this.state.isDeleteOpened;
     this.setState({
       isDeleteOpened: !showDelete,
@@ -35,7 +33,7 @@ class Movie extends Component {
       <>
         <div className="movie-wrapper">
           <div>
-            <img src={this.props.img}></img>
+            <img src={this.props.img} onClick={this.props.onOpenInfo}></img>
             <div class="dropdown-container" tabindex="-1">
               <div class="three-dots"></div>
               <div class="dropdown">
@@ -85,11 +83,12 @@ class Movie extends Component {
   }
 }
 
-Movie.propTypes = {
+MovieComponent.propTypes = {
   img: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   year: PropTypes.number.isRequired,
+  onOpenInfo: PropTypes.func,
 };
 
-export default Movie;
+export default MovieComponent;

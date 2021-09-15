@@ -1,7 +1,7 @@
 import React from "react";
 import "./../styles/logo.scss";
 
-function Logo() {
+function LogoComponent() {
   return (
     <div>
       <p className="logo-netflix">netflix</p>
@@ -9,4 +9,4 @@ function Logo() {
     </div>
   );
 }
-export default Logo;
+export default LogoComponent;

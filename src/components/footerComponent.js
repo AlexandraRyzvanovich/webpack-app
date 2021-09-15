@@ -1,13 +1,13 @@
 import React from "react";
-import Logo from "./logo";
 import "./../styles/footer.scss";
 import "./../styles/common.scss";
+import LogoComponent from "./logoComponent";
 
-function Footer() {
+function FooterComponent() {
   return (
     <footer>
-      <Logo />
+      <LogoComponent />
     </footer>
   );
 }
-export default Footer;
+export default FooterComponent;

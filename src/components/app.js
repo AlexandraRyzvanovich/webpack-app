@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import "./../styles/app.scss";
 import ErrorBoundary from "./errorBoundary";
-import Footer from "./footer";
+import FooterComponent from "./footerComponent";
 import MovieAppContainer from "./movieAppContainer";
 
 class App extends Component {
@@ -10,7 +10,7 @@ class App extends Component {
     return (
       <ErrorBoundary>
         <MovieAppContainer />
-        <Footer />
+        <FooterComponent />
       </ErrorBoundary>
     );
   }
