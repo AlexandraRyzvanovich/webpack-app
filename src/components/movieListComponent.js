@@ -15,7 +15,7 @@ class MovieListComponent extends Component {
           type={item.type}
           year={item.year}
           key={index + ""}
-          //onOpenInfo={this.handleMovieOpen}
+          onGetMovieInfo={this.props.onGetMovieInfo}
         />
       );
       list.push(movie);

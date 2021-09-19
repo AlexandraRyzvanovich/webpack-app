@@ -1,37 +1,55 @@
-import React, { Component } from "react";
+import React, { Component, useEffect, useState } from "react";
 
-import "./../styles/header.scss";
+import "./../styles/infoHeader.scss";
 import "./../styles/common.scss";
 
 import LogoComponent from "./logoComponent.js";
+import MovieService from "../service/movieService";
 
 function MovieInfoHeader(props) {
-  if (props.isOpened) {
-    return (
-      <header class="header">
+  let [movie, setMovie] = useState(() => {
+    let movie = MovieService.getFullMovieInfo(props.id);
+    return movie;
+  });
+  debugger;
+  return (
+    <header class="header-info">
+      <div className="header-icons-wrapper">
         <LogoComponent />
-        <div className="search-icon"></div>
         <div>
-          <img src={props.movieUrl}></img>
+          <img
+            src="https://img.icons8.com/windows/32/fa314a/search--v1.png"
+            className="search-img"
+            onClick={props.onOpenSearch}
+          />
+        </div>
+      </div>
+      <div className="content-wrapper">
+        <div>
+          <img src={movie.url} className="header-img"></img>
         </div>
         <div className="movie-info-wrapper">
-          <div>
-            <div>{props.movieName}</div>
-            <div>{props.movieRating}</div>
+          <div className="name-rating-wrapper">
+            <div className="movie-name">
+              <p className="header-text">{movie.name}</p>
+            </div>
+            <div className="rating-wrapper ">
+              <p className="rating">{movie.rating}</p>
+            </div>
           </div>
-          <div>
-            <div>{props.comment}</div>
+          <div className="comment-wrapper">
+            <p>{movie.comment}</p>
           </div>
-          <div>
-            <div>{props.year}</div>
-            <div>{props.length}</div>
+          <div className="year-wrapper">
+            <p>{movie.year}</p>
+            <p>{movie.length} min</p>
           </div>
-          <div>
-            <div>{props.description}</div>
+          <div className="description--header-wrapper">
+            <p>{movie.description}</p>
           </div>
         </div>
-      </header>
-    );
-  } else null;
+      </div>
+    </header>
+  );
 }
 export default MovieInfoHeader;

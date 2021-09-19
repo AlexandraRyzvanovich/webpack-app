@@ -4,6 +4,7 @@ import MovieService from "../service/movieService";
 import AddPopup from "./addPopup";
 import HeaderComponent from "./headerComponent";
 import MovieListContainer from "./movieListContainer";
+import MovieInfoHeader from "./movieInfoHeader";
 
 class MovieAppContainer extends Component {
   constructor(props) {
@@ -12,6 +13,8 @@ class MovieAppContainer extends Component {
       films: [],
       isOpened: false,
       isMovieInfoOpened: false,
+      isDefaultHeaderOpened: true,
+      movieId: 0,
     };
   }
 
@@ -49,33 +52,46 @@ class MovieAppContainer extends Component {
     this.togglePopup();
   };
 
-  handleMovieOpen = () => {
-    let movieOpened = this.state.isMovieInfoOpened;
+  handleOpenHeader = () => {
+    this.toggleHeader();
+  };
+
+  handleOpenHeader = (id) => {
     this.setState({
-      isMovieInfoOpened: !movieOpened,
+      movieId: id,
+    });
+    this.toggleHeader();
+  };
+
+  toggleHeader = () => {
+    let isDefaultHeaderOpened = this.state.isDefaultHeaderOpened;
+    let isMovieInfoOpened = this.state.isMovieInfoOpened;
+    this.setState({
+      isDefaultHeaderOpened: !isDefaultHeaderOpened,
+      isMovieInfoOpened: !isMovieInfoOpened,
     });
   };
 
   render() {
     return (
       <>
-        {/* <MovieInfoHeader
-          movieUrl={"MovieUrl"}
-          movieName={"name"}
-          movieRating={"rating"}
-          year={"1232"}
-          length={152}
-          description={"descr"}
-          comment={"comment"}
-          isOpened={false}
-        ></MovieInfoHeader> */}
-        <HeaderComponent
-          onOpen={this.togglePopup}
-          onSearch={this.handleSearch}
-        />
+        {this.state.isMovieInfoOpened && (
+          <MovieInfoHeader
+            id={this.state.movieId}
+            onOpenSearch={this.handleOpenHeader}
+          ></MovieInfoHeader>
+        )}
+
+        {this.state.isDefaultHeaderOpened && (
+          <HeaderComponent
+            onOpen={this.togglePopup}
+            onSearch={this.handleSearch}
+          />
+        )}
         <MovieListContainer
           onGetFilms={this.handleGetFilms}
           items={this.state.films}
+          onGetMovieInfo={this.handleOpenHeader}
         />
         <AddPopup
           isOpened={this.state.isOpened}

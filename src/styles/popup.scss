@@ -36,6 +36,7 @@ button {
   border: none;
   color: white;
   width: 150px;
+  cursor: pointer;
 }
 
 button:active {
@@ -126,6 +127,7 @@ button:active {
   width: 32px;
   height: 32px;
   opacity: 0.3;
+  cursor: pointer;
 }
 .close:hover {
   opacity: 1;

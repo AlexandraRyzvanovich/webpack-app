@@ -25,12 +25,13 @@ button {
   border: none;
   color: white;
   width: 150px;
+  cursor: pointer;
 }
 
 button:active {
   padding-top: 2px;
-
   padding-left: 2px;
+  cursor: pointer;
 }
 
 .underline {

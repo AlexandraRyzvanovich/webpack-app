@@ -33,7 +33,7 @@ class MovieComponent extends Component {
       <>
         <div className="movie-wrapper">
           <div>
-            <img src={this.props.img} onClick={this.props.onOpenInfo}></img>
+            <img src={this.props.img} onClick={this.props.onGetMovieInfo}></img>
             <div class="dropdown-container" tabindex="-1">
               <div class="three-dots"></div>
               <div class="dropdown">
