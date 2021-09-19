@@ -1,13 +1,19 @@
-import React, { Component } from "react";
+import React, { Component, useCallback } from "react";
 import "./../styles/movieList.scss";
 import { Fragment } from "react";
 import MovieComponent from "./movieComponent";
 
-class MovieListComponent extends Component {
-  renderMovieList = () => {
+function MovieListComponent(props) {
+  const callback = () => {
+    renderMovieList();
+  };
+
+  const deps = [props.items];
+
+  const renderMovieList = () => {
     let list = [];
     let movie;
-    this.props.items.forEach((item, index) => {
+    props.items.forEach((item, index) => {
       movie = (
         <MovieComponent
           img={item.img}
@@ -15,21 +21,22 @@ class MovieListComponent extends Component {
           type={item.type}
           year={item.year}
           key={index + ""}
-          onGetMovieInfo={this.props.onGetMovieInfo}
+          onGetMovieInfo={props.onGetMovieInfo}
         />
       );
       list.push(movie);
     });
     return list;
   };
-  render() {
-    return (
-      <Fragment>
-        <p className="list-size-text">{this.props.items.length} MOVIES FOUND</p>
-        <div className="list-wrapper">{this.renderMovieList()}</div>
-      </Fragment>
-    );
-  }
+
+  const movies = useCallback(callback, deps);
+
+  return (
+    <Fragment>
+      <p className="list-size-text">{movies.length} MOVIES FOUND</p>
+      <div className="list-wrapper">{renderMovieList()}</div>
+    </Fragment>
+  );
 }
 
 export default MovieListComponent;

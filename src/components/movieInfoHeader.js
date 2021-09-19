@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { Component, useCallback, useEffect, useState } from "react";
 
 import "./../styles/infoHeader.scss";
 import "./../styles/common.scss";
@@ -11,7 +11,7 @@ function MovieInfoHeader(props) {
     let movie = MovieService.getFullMovieInfo(props.id);
     return movie;
   });
-  debugger;
+
   return (
     <header class="header-info">
       <div className="header-icons-wrapper">

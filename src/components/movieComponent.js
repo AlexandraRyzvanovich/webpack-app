@@ -61,18 +61,9 @@ class MovieComponent extends Component {
             </div>
           </div>
         </div>
-        <EditPopup
-          onSave={this.props.handleSave}
-          isOpened={this.state.isEditOpened}
-          onClose={this.toggleEdit}
-          movieId={this.props.id}
-          movieTitle={this.props.name}
-          movieReleaseDate={this.props.year}
-          movieUrl={this.props.url}
-          movieGenre={this.props.genre}
-          movieOverview={this.props.overview}
-          movieRuntime={this.props.runtime}
-        />
+        {this.state.isEditOpened && (
+          <EditPopup onSave={this.props.handleSave} onClose={this.toggleEdit} />
+        )}
         <DeletePopup
           onSave={this.props.handleDelete}
           isOpened={this.state.isDeleteOpened}
