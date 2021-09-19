@@ -33,7 +33,7 @@ function MovieListComponent(props) {
 
   return (
     <Fragment>
-      <p className="list-size-text">{movies.length} MOVIES FOUND</p>
+      <p className="list-size-text">{props.items.length} MOVIES FOUND</p>
       <div className="list-wrapper">{renderMovieList()}</div>
     </Fragment>
   );
