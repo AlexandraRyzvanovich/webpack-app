@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import "./../styles/movie.scss";
-import "./../styles/popup.scss";
+
 import EditPopup from "./editPopup";
 import DeletePopup from "./deletePopup";
 
@@ -22,21 +21,25 @@ class MovieComponent extends Component {
   };
 
   toggleDelete = () => {
-    let showDelete = this.state.isDeleteOpened;
-    this.setState({
-      isDeleteOpened: !showDelete,
+    this.setState((state) => {
+      return {
+        isDeleteOpened: !state.isDeleteOpened,
+      };
     });
   };
 
   render() {
+    const { isDeleteOpened, isEditOpened } = this.state;
+    const { handleDelete, handleSave, img, onGetMovieInfo, name, type, year } =
+      this.props;
     return (
       <>
         <div className="movie-wrapper">
           <div>
-            <img src={this.props.img} onClick={this.props.onGetMovieInfo}></img>
-            <div class="dropdown-container" tabindex="-1">
-              <div class="three-dots"></div>
-              <div class="dropdown">
+            <img src={img} onClick={onGetMovieInfo}></img>
+            <div className="dropdown-container" tabIndex="-1">
+              <div className="three-dots"></div>
+              <div className="dropdown">
                 <div className="three-dots-close-wrapper">
                   <span className="three-dots-close" />
                 </div>
@@ -53,22 +56,20 @@ class MovieComponent extends Component {
           </div>
           <div className="description-wrapper">
             <div>
-              <p>{this.props.name}</p>
-              <p>{this.props.type}</p>
+              <p>{name}</p>
+              <p>{type}</p>
             </div>
             <div className="year">
-              <p>{this.props.year}</p>
+              <p>{year}</p>
             </div>
           </div>
         </div>
-        {this.state.isEditOpened && (
-          <EditPopup onSave={this.props.handleSave} onClose={this.toggleEdit} />
+        {isEditOpened && (
+          <EditPopup onSave={handleSave} onClose={this.toggleEdit} />
         )}
-        <DeletePopup
-          onSave={this.props.handleDelete}
-          isOpened={this.state.isDeleteOpened}
-          onClose={this.toggleDelete}
-        />
+        {isDeleteOpened && (
+          <DeletePopup onSave={handleDelete} onClose={this.toggleDelete} />
+        )}
       </>
     );
   }

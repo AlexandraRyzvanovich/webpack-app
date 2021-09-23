@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 
-import "./../styles/header.scss";
-import "./../styles/common.scss";
-import "./../styles/popup.scss";
 import MovieService from "../service/movieService";
 
-const initialMovie = "";
-
 function EditPopup(props) {
-  const [movie, setMovie] = useState(initialMovie);
+  const [movie, setMovie] = useState("");
 
   useEffect(() => {
     loadMovie();
@@ -17,13 +13,13 @@ function EditPopup(props) {
   const loadMovie = () => {
     setMovie(MovieService.getFullMovieInfo(1));
   };
-
+  const { onClose } = props;
   return (
     <div className="popup-box">
       <div className="box">
         <div className="add-popup-header">
           <div>
-            <span className="close" onClick={props.onClose} />
+            <span className="close" onClick={onClose} />
           </div>
           <div className="title-wrapper">
             <p className="title">EDIT MOVIE</p>
@@ -64,15 +60,11 @@ function EditPopup(props) {
         <div className="buttons-wrapper">
           <div className="button-wrapper">
             <div className="button-reset-wrapper">
-              <button type="submit" className="button-reset">
+              <button type="submit" className="button-reset" onClick={onClose}>
                 RESET
               </button>
             </div>
-            <button
-              type="submit"
-              className="button-submit"
-              onClick={props.onClose}
-            >
+            <button type="submit" className="button-submit" onClick={onClose}>
               SUBMIT
             </button>
           </div>
@@ -82,16 +74,7 @@ function EditPopup(props) {
   );
 }
 
-// EditPopup.propTypes = {
-//   onSave: PropTypes.func,
-//   isOpened: PropTypes.bool,
-//   onClose: PropTypes.func,
-//   movieId: PropTypes.number,
-//   movieTitle: PropTypes.string,
-//   movieReleaseDate: PropTypes.string,
-//   movieUrl: PropTypes.string,
-//   movieGenre: PropTypes.string,
-//   movieOverview: PropTypes.string,
-//   movieRuntime: PropTypes.string,
-// };
+EditPopup.propTypes = {
+  onClose: PropTypes.func.isRequired,
+};
 export default EditPopup;

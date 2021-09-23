@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import "./../styles/search.scss";
 
@@ -22,5 +23,8 @@ function SearchComponent(props) {
     </>
   );
 }
+SearchComponent.propTypes = {
+  onSearch: PropTypes.func.isRequired,
+};
 
 export default SearchComponent;

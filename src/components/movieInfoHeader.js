@@ -1,19 +1,22 @@
-import React, { Component, useCallback, useEffect, useState } from "react";
-
-import "./../styles/infoHeader.scss";
-import "./../styles/common.scss";
+import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 
 import LogoComponent from "./logoComponent.js";
 import MovieService from "../service/movieService";
 
 function MovieInfoHeader(props) {
-  let [movie, setMovie] = useState(() => {
-    let movie = MovieService.getFullMovieInfo(props.id);
-    return movie;
-  });
+  const [movie, setMovie] = useState("");
+
+  useEffect(() => {
+    getMovie();
+  }, []);
+
+  const getMovie = () => {
+    setMovie(MovieService.getFullMovieInfo(1));
+  };
 
   return (
-    <header class="header-info">
+    <header className="header-info">
       <div className="header-icons-wrapper">
         <LogoComponent />
         <div>
@@ -52,4 +55,8 @@ function MovieInfoHeader(props) {
     </header>
   );
 }
+
+MovieInfoHeader.propTypes = {
+  onOpenSearch: PropTypes.func.isRequired,
+};
 export default MovieInfoHeader;
