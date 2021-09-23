@@ -1,0 +1,120 @@
+.header-info {
+  color: #fff;
+  padding: 1rem;
+  position: relative;
+  display: flex;
+  height: 500px;
+  padding-bottom: 15px;
+  flex-direction: column;
+}
+.header-info::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+  height: 500px;
+  filter: blur(10px);
+  background-image: url(https://www.onlinekosten.de/bilder/netflix-oberflaeche_0502w600_8602.jpg);
+}
+
+.button-add {
+  position: absolute;
+  right: 50px;
+  width: 165px;
+  height: 38px;
+  border-radius: 5px;
+  background-color: #fff;
+  opacity: 0.2;
+  outline: none;
+  border: none;
+  color: #f65261;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.header-img {
+  width: 400px;
+  height: 450px;
+}
+
+.search-img {
+  width: 20px;
+  height: 22px;
+  cursor: pointer;
+}
+
+.header-icons-wrapper {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  width: 100%;
+  height: 25px;
+}
+
+.content-wrapper {
+  display: flex;
+  width: 80%;
+  position: absolute;
+  justify-content: flex-start;
+  padding-left: 113px;
+  padding-top: 25px;
+}
+
+.movie-info-wrapper {
+  padding-left: 40px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  width: 75%;
+}
+
+.name-rating-wrapper {
+  display: flex;
+  width: 65%;
+  font-size: xxx-large;
+  padding-top: 10px;
+}
+p {
+  font-family: "Arial", sans-serif;
+}
+
+.header-text {
+  font-size: xxx-large;
+  padding-top: 6px;
+}
+
+.movie-name {
+  padding-right: 25px;
+}
+.rating-wrapper {
+  text-align: center;
+  border: 1px solid #f9f9f9;
+  width: 70px;
+  height: 66px;
+  border-radius: 100%;
+}
+
+.rating {
+  font-size: xx-large;
+  padding-top: 12px;
+  color: green;
+}
+
+.comment-wrapper {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.year-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 30%;
+  color: #f65261;
+  font-size: x-large;
+  padding-bottom: 10px;
+}
+.description--header-wrapper {
+  font-size: large;
+}

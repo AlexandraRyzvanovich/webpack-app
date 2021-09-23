@@ -1,0 +1,21 @@
+.home-wrapper {
+  background-color: #232323;
+  display: block;
+}
+.list-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding-left: 2%;
+  padding-right: 2%;
+  padding-top: 10px;
+}
+.list-size-text {
+  padding-left: 2%;
+  padding-top: 10px;
+  color: #ffffff;
+}
+
+.background {
+  background-color: #232323;
+}

@@ -1,0 +1,59 @@
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  position: relative;
+}
+.buttons-left-wrapper {
+  padding-left: 2%;
+  padding-top: 1%;
+  width: 30%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttons-rigth-wrapper {
+  padding-right: 2%;
+  padding-top: 1%;
+  width: 20%;
+  display: flex;
+  justify-content: space-between;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  color: white;
+  width: 150px;
+  cursor: pointer;
+}
+
+button:active {
+  padding-top: 2px;
+  padding-left: 2px;
+  cursor: pointer;
+}
+
+.underline {
+  text-decoration: none;
+}
+
+.list-header:after {
+  position: absolute;
+  content: "";
+  height: 2px;
+  bottom: -4px;
+
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  width: 96%;
+  background: #555555;
+
+  transition: 0.5s;
+}
+
+.underline:hover:after {
+  width: 80%;
+  background: orange;
+}

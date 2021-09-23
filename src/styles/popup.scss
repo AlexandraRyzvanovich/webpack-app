@@ -1,0 +1,161 @@
+.popup-box {
+  position: fixed;
+  background: #00000050;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  align-self: center;
+  overflow: hidden;
+}
+
+.box {
+  position: absolute;
+  left: 25%;
+  right: 25%;
+  top: 20%;
+  bottom: 20%;
+  margin: auto;
+  background: #232323;
+  width: 35%;
+  padding: 20px;
+  overflow: auto;
+}
+
+.close-icon {
+  cursor: pointer;
+  font-size: 40px;
+  background: none;
+  display: flex;
+  justify-content: flex-end;
+  color: white;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  color: white;
+  width: 150px;
+  cursor: pointer;
+}
+
+button:active {
+  padding-top: 2px;
+  padding-left: 2px;
+}
+
+.button-submit {
+  width: 150px;
+  height: 30px;
+  background-color: #f65261;
+  color: #ffffff;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+}
+
+.button-reset {
+  width: 150px;
+  height: 30px;
+  background-color: white;
+  color: #f65261;
+  outline: none;
+  border-radius: 5px;
+  border-color: #f65261;
+  border: solid 1px;
+}
+
+.input-add {
+  background-color: #424242;
+  width: 94%;
+  height: 30px;
+  opacity: 0.9;
+  margin-right: 5px;
+  outline: none;
+  border: none;
+  font-family: revert;
+  font-size: large;
+  border-radius: 5px;
+  font-weight: 400;
+  max-width: 765px;
+  min-width: 200px;
+}
+.title-wrapper {
+  padding-bottom: 10px;
+  padding-left: 20px;
+}
+
+.title {
+  color: white;
+  font-size: xx-large;
+}
+.input-add-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-bottom: 10px;
+  padding-left: 20px;
+}
+.input-title {
+  margin: 0;
+  padding-bottom: 5px;
+  color: #f65261;
+  font-size: inherit;
+}
+.add-popup-header {
+  display: flex;
+  flex-direction: column;
+}
+.buttons-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 33px;
+}
+
+.button-wrapper {
+  display: flex;
+}
+
+.button-reset-wrapper {
+  padding-right: 10px;
+}
+
+.close {
+  position: absolute;
+  right: 32px;
+  top: 32px;
+  width: 32px;
+  height: 32px;
+  opacity: 0.3;
+  cursor: pointer;
+}
+.close:hover {
+  opacity: 1;
+}
+.close:before,
+.close:after {
+  position: absolute;
+  left: 15px;
+  content: " ";
+  height: 33px;
+  width: 2px;
+  background-color: #f9f9f9;
+}
+.close:before {
+  transform: rotate(45deg);
+}
+.close:after {
+  transform: rotate(-45deg);
+}
+.box-delete {
+  position: absolute;
+  left: 25%;
+  right: 25%;
+  top: 20%;
+  bottom: 45%;
+  margin: auto;
+  background: #232323;
+  width: 35%;
+  padding: 16px;
+  overflow: auto;
+}
