@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 import "./../styles/app.scss";
 import ErrorBoundary from "./errorBoundary";
@@ -11,15 +11,13 @@ import "./../styles/popup.scss";
 import "./../styles/movie.scss";
 import "./../styles/infoHeader.scss";
 
-class App extends Component {
-  render() {
-    return (
-      <ErrorBoundary>
-        <MovieAppContainer />
-        <FooterComponent />
-      </ErrorBoundary>
-    );
-  }
+function App() {
+  return (
+    <ErrorBoundary>
+      <MovieAppContainer />
+      <FooterComponent />
+    </ErrorBoundary>
+  );
 }
 
 export default App;

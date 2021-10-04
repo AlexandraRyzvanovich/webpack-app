@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
-import MovieService from "../service/movieService";
+import MovieService from "../../service/movieService";
 
 function EditPopup(props) {
   const [movie, setMovie] = useState("");
