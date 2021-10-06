@@ -1,0 +1,1 @@
+import useMovieInfo from "./useMovieInfo";

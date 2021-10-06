@@ -11,6 +11,8 @@ function MovieListContainer(props) {
       <MovieListComponent
         items={props.items}
         onGetMovieInfo={props.onGetMovieInfo}
+        onEdit={props.onEdit}
+        onDelete={props.onDelete}
       />
     </div>
   );
@@ -20,6 +22,8 @@ MovieListContainer.propTypes = {
   onGetFilms: PropTypes.func.isRequired,
   items: PropTypes.array.isRequired,
   onGetMovieInfo: PropTypes.func.isRequired,
+  onEdit: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
 };
 
 export default MovieListContainer;

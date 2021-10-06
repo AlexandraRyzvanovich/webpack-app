@@ -1,5 +1,5 @@
 import React from "react";
-import "./../styles/logo.scss";
+import "./../../styles/logo.scss";
 
 function LogoComponent() {
   return (

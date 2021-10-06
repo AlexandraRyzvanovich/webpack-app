@@ -48,7 +48,6 @@ class MovieService {
   };
 
   static getFullMovieInfo = (id) => {
-    debugger;
     return {
       id: id,
       url: "https://www.kino-teatr.ru/movie/posters/big/1/32751.jpg",
