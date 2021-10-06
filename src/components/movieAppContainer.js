@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import MovieService from "../service/movieService";
 
 import AddPopup from "./popup/addPopup";
@@ -12,7 +12,7 @@ function MovieAppContainer() {
   const [isAddPopupOpened, setIsAddPopupOpened] = useState(false);
   const [isEditPopupOpened, setIsEditPopupOpened] = useState(false);
   const [isDeletePopupOpened, setIsDeletePopupOpened] = useState(false);
-  const [movieId, setMovieId] = useState(0);
+  const [movieId, setMovieId] = useState();
 
   useEffect(() => {
     setFilms(MovieService.getAllMovies());
@@ -38,25 +38,21 @@ function MovieAppContainer() {
     setFilms([]);
   };
 
-  const handleToggleHeader = (id) => {
-    if (id > 0) {
-      setMovieId(id);
-    }
-    setMovieId(0);
-  };
-
   return (
     <>
       <HeaderComponent
         onOpen={handleToggleAddPopup}
         onSearch={handleSearch}
         id={movieId}
-        onOpenSearch={handleToggleHeader}
+        onClearSelection={() => {
+          debugger;
+          setMovieId(undefined);
+        }}
       />
       <MovieListContainer
         onGetFilms={handleGetFilms}
         items={films}
-        onGetMovieInfo={handleToggleHeader}
+        onGetMovieInfo={setMovieId}
         onEdit={handleToggleEditPopup}
         onDelete={handleToggleDeletePopup}
       />

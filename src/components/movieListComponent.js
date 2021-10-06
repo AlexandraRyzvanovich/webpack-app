@@ -12,6 +12,7 @@ function MovieListComponent(props) {
       <div className="list-wrapper">
         {items.map((item) => (
           <MovieComponent
+            id={item.id}
             img={item.img}
             name={item.name}
             type={item.type}

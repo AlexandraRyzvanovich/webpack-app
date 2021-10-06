@@ -1,19 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
-import MovieService from "../../service/movieService";
+import useMovieInfo from "../../hooks/useMovieInfo";
 
-function EditPopup(props) {
-  const [movie, setMovie] = useState("");
+function EditPopup({ onClose, id }) {
+  const movie = useMovieInfo(id);
 
-  useEffect(() => {
-    loadMovie();
-  }, []);
-
-  const loadMovie = () => {
-    setMovie(MovieService.getFullMovieInfo(1));
-  };
-  const { onClose } = props;
   return (
     <div className="popup-box">
       <div className="box">

@@ -9,8 +9,8 @@ import useMovieInfo from "../../hooks/useMovieInfo";
 function HeaderComponent(props) {
   const movie = useMovieInfo(1);
 
-  const { onOpen, onSearch, id, onOpenSearch } = props;
-  if (id && onOpenSearch) {
+  const { onOpen, onSearch, id, onClearSelection } = props;
+  if (id) {
     return (
       <header className="header-info">
         <div className="header-icons-wrapper">
@@ -19,7 +19,7 @@ function HeaderComponent(props) {
             <img
               src="https://img.icons8.com/windows/32/fa314a/search--v1.png"
               className="search-img"
-              onClick={props.onOpenSearch}
+              onClick={onClearSelection}
             />
           </div>
         </div>
@@ -67,7 +67,7 @@ function HeaderComponent(props) {
 
 HeaderComponent.propTypes = {
   onOpen: PropTypes.func.isRequired,
-  onSearch: PropTypes.func.isRequired,
+  onClearSelection: PropTypes.func.isRequired,
   id: PropTypes.number,
   onOpenSearch: PropTypes.func,
 };
