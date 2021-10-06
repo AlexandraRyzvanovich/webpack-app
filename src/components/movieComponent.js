@@ -2,12 +2,15 @@ import React from "react";
 import PropTypes from "prop-types";
 
 function MovieComponent(props) {
-  const { img, onGetMovieInfo, name, type, year, onEdit, onDelete } = props;
+  const { img, onGetMovieInfo, name, type, year, onEdit, onDelete, id } = props;
+  const handleClick = () => {
+    onGetMovieInfo(id);
+  };
   return (
     <>
       <div className="movie-wrapper">
         <div>
-          <img src={img} onClick={onGetMovieInfo(1)}></img>
+          <img src={img} onClick={handleClick}></img>
           <div className="dropdown-container" tabIndex="-1">
             <div className="three-dots"></div>
             <div className="dropdown">
