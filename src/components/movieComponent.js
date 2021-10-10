@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 function MovieComponent(props) {
   const { img, onGetMovieInfo, name, type, year, onEdit, onDelete, id } = props;
   const handleClick = () => {
+    debugger;
     onGetMovieInfo(id);
   };
   return (
