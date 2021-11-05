@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import MovieService from "../service/movieService";
 import { connect } from "react-redux";
 
-import AddPopup from "./popup/addPopup";
-import HeaderComponent from "./header/headerComponent";
 import MovieListContainer from "./movieListContainer";
+
 import EditPopup from "./popup/editPopup";
 import DeletePopup from "./popup/deletePopup";
 import { getAllMovies } from "../store/actions/movies";
+import HeaderContainer from "./header/headerContainer";
+import PopupContainer from "./popup/popupContainer";
+
 
 function MovieAppContainer(props) {
   const [films, setFilms] = useState([]);
@@ -47,7 +49,7 @@ function MovieAppContainer(props) {
 
   return (
     <>
-      <HeaderComponent
+      <HeaderContainer
         onOpen={handleToggleAddPopup}
         onSearch={handleSearch}
         id={movieId}
@@ -62,24 +64,17 @@ function MovieAppContainer(props) {
         onEdit={handleToggleEditPopup}
         onDelete={handleToggleDeletePopup}
       />
-      {isAddPopupOpened && (
-        <AddPopup
-          onClose={handleToggleAddPopup}
-          onSave={handleToggleAddPopup}
-        />
-      )}
-      {isEditPopupOpened && (
-        <EditPopup
-          onSave={handleToggleEditPopup}
-          onClose={handleToggleEditPopup}
-        />
-      )}
-      {isDeletePopupOpened && (
-        <DeletePopup
-          onSave={handleToggleDeletePopup}
-          onClose={handleToggleDeletePopup}
-        />
-      )}
+      <PopupContainer
+        isAddPopupOpened={isAddPopupOpened}
+        isEditPopupOpened={isEditPopupOpened}
+        isDeletePopupOpened={isDeletePopupOpened}
+        onCloseAdd={handleToggleAddPopup}
+        onSaveAdd={handleToggleAddPopup}
+        onCloseEdit={handleToggleEditPopup}
+        onSaveEdit={handleToggleEditPopup}
+        onCloseDelete={handleToggleDeletePopup}
+        onSaveDelete={handleToggleDeletePopup}
+      />
     </>
   );
 }
