@@ -6,26 +6,21 @@ import MovieListContainer from "./movieListContainer";
 
 import EditPopup from "./popup/editPopup";
 import DeletePopup from "./popup/deletePopup";
-import { getAllMovies } from "../store/actions/movies";
+import { fetchAll } from "../store/actions/movies";
 import HeaderContainer from "./header/headerContainer";
 import PopupContainer from "./popup/popupContainer";
 
 
-function MovieAppContainer(props) {
-  const [films, setFilms] = useState([]);
+function MovieAppContainer({ fetchAll, films }) {
   const [isAddPopupOpened, setIsAddPopupOpened] = useState(false);
   const [isEditPopupOpened, setIsEditPopupOpened] = useState(false);
   const [isDeletePopupOpened, setIsDeletePopupOpened] = useState(false);
   const [movieId, setMovieId] = useState();
 
   useEffect(() => {
-    setFilms(getAllMovies());
+    fetchAll()
   }, []);
 
-  const getAllMovies = () => {
-    debugger;
-    props.getAllMovies();
-  };
 
   const handleToggleAddPopup = () => {
     setIsAddPopupOpened(!isAddPopupOpened);
@@ -40,11 +35,11 @@ function MovieAppContainer(props) {
   };
 
   const handleGetFilms = () => {
-    setFilms(MovieService.getAllMovies());
+    // setFilms(MovieService.getAllMovies());
   };
 
   const handleSearch = () => {
-    setFilms([]);
+    // setFilms([]);
   };
 
   return (
@@ -59,7 +54,7 @@ function MovieAppContainer(props) {
       />
       <MovieListContainer
         onGetFilms={handleGetFilms}
-        items={props.films}
+        items={films}
         onGetMovieInfo={setMovieId}
         onEdit={handleToggleEditPopup}
         onDelete={handleToggleDeletePopup}
@@ -80,10 +75,9 @@ function MovieAppContainer(props) {
 }
 
 const mapStateToProps = (state) => {
-  debugger;
   return {
-    films: state.todos,
+    films: state.movies,
   };
 };
 
-export default connect(mapStateToProps, { getAllMovies })(MovieAppContainer);
+export default connect(mapStateToProps, { fetchAll })(MovieAppContainer);

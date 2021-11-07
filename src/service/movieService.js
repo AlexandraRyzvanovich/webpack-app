@@ -1,50 +1,42 @@
 class MovieService {
   static getAllMovies = () => {
-    let moviesList = [];
-    moviesList.push({
+    return [{
       id: 1,
       img: "https://www.kino-teatr.ru/movie/posters/big/1/32751.jpg",
       name: "Lion King",
       type: "Cartoon",
       year: 1994,
-    });
-    moviesList.push({
+    }, {
       id: 2,
       img: "https://www.kino-teatr.ru/movie/posters/big/1/32751.jpg",
       name: "Lion King",
       type: "Cartoon",
       year: 1994,
-    });
-    moviesList.push({
+    }, {
       id: 3,
       img: "https://www.kino-teatr.ru/movie/posters/big/1/32751.jpg",
       name: "Lion King",
       type: "Cartoon",
       year: 1994,
-    });
-    moviesList.push({
+    }, {
       id: 4,
       img: "https://www.kino-teatr.ru/movie/posters/big/1/32751.jpg",
       name: "Lion King",
       type: "Cartoon",
       year: 1994,
-    });
-    moviesList.push({
+    }, {
       id: 5,
       img: "https://www.kino-teatr.ru/movie/posters/big/1/32751.jpg",
       name: "Lion King",
       type: "Cartoon",
       year: 1994,
-    });
-    moviesList.push({
+    }, {
       id: 6,
       img: "https://www.kino-teatr.ru/movie/posters/big/1/32751.jpg",
       name: "Lion King",
       type: "Cartoon",
       year: 1994,
-    });
-
-    return moviesList;
+    }]
   };
 
   static getFullMovieInfo = (id) => {

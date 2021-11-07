@@ -6,7 +6,6 @@ import InfoHeader from "./infoHeaderComponent";
 
 function HeaderContainer(props) {
   const { onOpen, onSearch, id, onClearSelection } = props;
-  debugger;
   if (!id) {
     return <CommonHeader onOpen={onOpen} onSearch={onSearch} />;
   }

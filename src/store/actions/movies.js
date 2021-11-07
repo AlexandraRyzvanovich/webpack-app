@@ -1,16 +1,14 @@
 import moviesDataService from "../../service/moviesDataService";
-import { GET_ALL_MOVIES } from "./type";
 
-export const getAllMovies = (dispatch) => {
-  try {
-    debugger;
-    const res = moviesDataService.getAllMovies();
-
-    dispatch({
-      type: GET_ALL_MOVIES,
-      payload: res.data,
+export const fetchAll = (someData) => {
+  return (dispatch) => {
+    moviesDataService.getAllMovies().then((movies) => {
+      dispatch({
+        type: 'movies/fetchAll',
+        payload: movies,
+      });
     });
-  } catch (err) {
-    console.log(err);
+
+
   }
 };
