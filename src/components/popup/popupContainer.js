@@ -16,13 +16,23 @@ function PopupContainer(props) {
     onSaveEdit,
     onCloseDelete,
     onSaveDelete,
+    onEdit,
+    onAdd,
+    movie,
   } = props;
   return (
     <>
-      {isAddPopupOpened && <AddPopup onClose={onCloseAdd} onSave={onSaveAdd} />}
+      {isAddPopupOpened && (
+        <AddPopup onClose={onCloseAdd} onSave={onSaveAdd} onAdd={onAdd} />
+      )}
 
       {isEditPopupOpened && (
-        <EditPopup onSave={onSaveEdit} onClose={onCloseEdit} />
+        <EditPopup
+          onSave={onSaveEdit}
+          onClose={onCloseEdit}
+          movie={movie}
+          onEdit={onEdit}
+        />
       )}
 
       {isDeletePopupOpened && (
@@ -42,5 +52,8 @@ PopupContainer.propTypes = {
   onSaveEdit: PropTypes.func.isRequired,
   onCloseDelete: PropTypes.func.isRequired,
   onSaveDelete: PropTypes.func.isRequired,
+  movie: PropTypes.object,
+  onEdit: PropTypes.func.isRequired,
+  onAdd: PropTypes.func.isRequired,
 };
 export default PopupContainer;

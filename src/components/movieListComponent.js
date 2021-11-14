@@ -5,20 +5,21 @@ import "./../styles/movieList.scss";
 import MovieComponent from "./movieComponent";
 
 function MovieListComponent(props) {
-  const { items, onGetMovieInfo, onEdit, onDelete } = props;
+  const { movies, onGetMovieInfo, onEdit, onDelete } = props;
+  debugger;
   return (
     <>
-      <p className="list-size-text">{items.length} MOVIES FOUND</p>
+      <p className="list-size-text">{movies.length} MOVIES FOUND</p>
       <div className="list-wrapper">
-        {items.map((item) => (
+        {movies.map((movie) => (
           <MovieComponent
-            id={item.id}
-            img={item.img}
-            name={item.name}
-            type={item.type}
-            year={item.year}
+            id={movie.id}
+            poster_path={movie.poster_path}
+            title={movie.title}
+            genres={movie.genres}
+            release_date={movie.release_date}
             onGetMovieInfo={onGetMovieInfo}
-            onEdit={onEdit}
+            onEdit={() => onEdit(movie.id)}
             onDelete={onDelete}
           />
         ))}
@@ -28,7 +29,7 @@ function MovieListComponent(props) {
 }
 
 MovieListComponent.propTypes = {
-  items: PropTypes.array.isRequired,
+  movies: PropTypes.array.isRequired,
   onGetMovieInfo: PropTypes.func.isRequired,
   onEdit: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,

@@ -1,9 +1,24 @@
 import React from "react";
+import { useState } from "react";
 
 import PropTypes from "prop-types";
 
 function AddPopup(props) {
-  const { onClose, onSave } = props;
+  const { onClose, onSave, onAdd } = props;
+  const [title, setTitle] = useState("");
+  const [release_date, setReleaseDate] = useState("");
+  const [poster_path, setPosterPath] = useState("");
+  const [genre, setGenre] = useState([]);
+  const [overview, setOverview] = useState("");
+  const [runtime, setRuntime] = useState("");
+  const newMovie = {
+    title: title,
+    release_date: release_date,
+    poster_path: poster_path,
+    genre: genre,
+    overview: overview,
+    runtime: runtime,
+  };
   return (
     <div className="popup-box">
       <div className="box">
@@ -21,11 +36,21 @@ function AddPopup(props) {
             className="input-add"
             type="input"
             placeholder="Enter the title"
+            value={title}
+            onChange={(v) => {
+              setTitle(v.target.value);
+            }}
           />
         </div>
         <div className="input-add-wrapper">
           <p className="input-title">RELEASE DATE</p>
-          <input className="input-add" type="input" placeholder="Select Date" />
+          <input
+            className="input-add"
+            type="input"
+            placeholder="Select Date"
+            value={release_date}
+            onChange={(v) => setReleaseDate(v.target.value)}
+          />
         </div>
         <div className="input-add-wrapper">
           <p className="input-title">MOVIE URL</p>
@@ -33,6 +58,8 @@ function AddPopup(props) {
             className="input-add"
             type="input"
             placeholder="Movie URL here"
+            value={poster_path}
+            onChange={(v) => setPosterPath(v.target.value)}
           />
         </div>
         <div className="input-add-wrapper">
@@ -41,6 +68,8 @@ function AddPopup(props) {
             className="input-add"
             type="input"
             placeholder="Select Genre"
+            value={genre}
+            onChange={(v) => setGenre(v.target.value)}
           />
         </div>
         <div className="input-add-wrapper">
@@ -49,6 +78,8 @@ function AddPopup(props) {
             className="input-add"
             type="input"
             placeholder="Overview here"
+            value={overview}
+            onChange={(v) => setOverview(v.target.value)}
           />
         </div>
         <div className="input-add-wrapper">
@@ -57,6 +88,8 @@ function AddPopup(props) {
             type="input"
             className="input-add"
             placeholder="Runtime here"
+            value={runtime}
+            onChange={(v) => setRuntime(v.target.value)}
           />
         </div>
         <div className="buttons-wrapper">
@@ -66,7 +99,11 @@ function AddPopup(props) {
                 RESET
               </button>
             </div>
-            <button type="submit" className="button-submit" onClick={onSave}>
+            <button
+              type="submit"
+              className="button-submit"
+              onClick={() => onAdd(newMovie)}
+            >
               SUBMIT
             </button>
           </div>
@@ -78,6 +115,7 @@ function AddPopup(props) {
 AddPopup.propTypes = {
   onClose: PropTypes.func.isRequired,
   onSave: PropTypes.func.isRequired,
+  onAdd: PropTypes.func.isRequired,
 };
 
 export default AddPopup;

@@ -1,11 +1,11 @@
 import React from "react";
-
 import PropTypes from "prop-types";
 import useMovieInfo from "../../hooks/useMovieInfo";
 import LogoComponent from "./logoComponent";
 
 function InfoHeader(props) {
-  const movie = useMovieInfo(props.id);
+  useMovieInfo(props.movie);
+  debugger;
 
   return (
     <header className="header-info">
@@ -21,26 +21,26 @@ function InfoHeader(props) {
       </div>
       <div className="content-wrapper">
         <div>
-          <img src={movie.url} className="header-img"></img>
+          <img src={props.movie.poster_path} className="header-img"></img>
         </div>
         <div className="movie-info-wrapper">
           <div className="name-rating-wrapper">
             <div className="movie-name">
-              <p className="header-text">{movie.name}</p>
+              <p className="header-text">{props.movie.title}</p>
             </div>
             <div className="rating-wrapper ">
-              <p className="rating">{movie.rating}</p>
+              <p className="rating">{props.movie.vote_average}</p>
             </div>
           </div>
           <div className="comment-wrapper">
-            <p>{movie.comment}</p>
+            <p>{props.movie.tagline}</p>
           </div>
           <div className="year-wrapper">
-            <p>{movie.year}</p>
-            <p>{movie.length} min</p>
+            <p>{props.movie.release_date}</p>
+            <p>{props.movie.runtime} min</p>
           </div>
           <div className="description--header-wrapper">
-            <p>{movie.description}</p>
+            <p>{props.movie.overview}</p>
           </div>
         </div>
       </div>
@@ -51,6 +51,7 @@ function InfoHeader(props) {
 InfoHeader.propTypes = {
   onClearSelection: PropTypes.func.isRequired,
   id: PropTypes.number,
+  movie: PropTypes.object,
 };
 
 export default InfoHeader;

@@ -5,11 +5,15 @@ import CommonHeader from "./commonHeaderComponent";
 import InfoHeader from "./infoHeaderComponent";
 
 function HeaderContainer(props) {
-  const { onOpen, onSearch, id, onClearSelection } = props;
-  if (!id) {
+  const { onOpen, onSearch, id, onClearSelection, movie } = props;
+  if (movie.length == 0) {
+    debugger;
     return <CommonHeader onOpen={onOpen} onSearch={onSearch} />;
   }
-  return <InfoHeader id={id} onClearSelection={onClearSelection} />;
+  debugger;
+  return (
+    <InfoHeader id={id} onClearSelection={onClearSelection} movie={movie} />
+  );
 }
 
 HeaderContainer.propTypes = {
@@ -17,6 +21,7 @@ HeaderContainer.propTypes = {
   onClearSelection: PropTypes.func.isRequired,
   id: PropTypes.number,
   onOpenSearch: PropTypes.func,
+  movie: PropTypes.object,
 };
 
 export default HeaderContainer;

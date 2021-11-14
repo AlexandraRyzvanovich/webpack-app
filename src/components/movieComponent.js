@@ -2,15 +2,25 @@ import React from "react";
 import PropTypes from "prop-types";
 
 function MovieComponent(props) {
-  const { img, onGetMovieInfo, name, type, year, onEdit, onDelete, id } = props;
+  const {
+    poster_path,
+    onGetMovieInfo,
+    title,
+    genres,
+    release_date,
+    onEdit,
+    onDelete,
+    id,
+  } = props;
   const handleClick = () => {
+    debugger;
     onGetMovieInfo(id);
   };
   return (
     <>
       <div className="movie-wrapper">
         <div>
-          <img src={img} onClick={handleClick}></img>
+          <img src={poster_path} onClick={handleClick}></img>
           <div className="dropdown-container" tabIndex="-1">
             <div className="three-dots"></div>
             <div className="dropdown">
@@ -30,11 +40,11 @@ function MovieComponent(props) {
         </div>
         <div className="description-wrapper">
           <div>
-            <p>{name}</p>
-            <p>{type}</p>
+            <p>{title}</p>
+            <p>{genres}</p>
           </div>
           <div className="year">
-            <p>{year}</p>
+            <p>{release_date}</p>
           </div>
         </div>
       </div>
@@ -43,10 +53,10 @@ function MovieComponent(props) {
 }
 
 MovieComponent.propTypes = {
-  img: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-  year: PropTypes.number.isRequired,
+  poster_path: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  genres: PropTypes.arrayOf(String),
+  release_date: PropTypes.number.isRequired,
   onGetMovieInfo: PropTypes.func,
   onEdit: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
