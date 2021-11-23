@@ -29,7 +29,7 @@ class MoviesDataService {
 
   sortAllByReleaseDateDESC() {
     return http
-      .get("/movies?sortBy=release_date&sortOrder=desc")
+      .get("/movies?sortBy=release_date&sortOrder=asc")
       .then(({ data }) =>
         data.data.map(({ id, poster_path, title, release_date, genres }) => ({
           id,
@@ -44,7 +44,7 @@ class MoviesDataService {
   sortByField(fieldName) {
     debugger;
     return http
-      .get("/movies?sortBy=" + fieldName + "&sortOrder=desc")
+      .get("/movies?sortBy=" + fieldName + "&sortOrder=asc")
       .then(({ data }) =>
         data.data.map(({ id, poster_path, title, release_date, genres }) => ({
           id,
@@ -57,7 +57,7 @@ class MoviesDataService {
   }
 
   searchByGenre(genre) {
-    return http.get("movies?searchBy=title&filter=" + genre).then(({ data }) =>
+    return http.get("/movies?searchBy=title&filter=" + genre).then(({ data }) =>
       data.data.map(({ id, poster_path, title, release_date, genres }) => ({
         id,
         poster_path,
@@ -66,6 +66,21 @@ class MoviesDataService {
         release_date,
       }))
     );
+  }
+
+  searchByTitle(title) {
+    debugger;
+    return http
+      .get("/movies?search=" + title + "&searchBy=title")
+      .then(({ data }) =>
+        data.data.map(({ id, poster_path, title, release_date, genres }) => ({
+          id,
+          poster_path,
+          title,
+          genres,
+          release_date,
+        }))
+      );
   }
 
   getMovieById(id) {
@@ -80,6 +95,9 @@ class MoviesDataService {
 
   updateMovie(movie) {
     return http.put("/movies", movie);
+  }
+  deleteMovie(id) {
+    return http.delete("/movies/" + id).then(this.getAllMovies);
   }
 }
 export default new MoviesDataService();

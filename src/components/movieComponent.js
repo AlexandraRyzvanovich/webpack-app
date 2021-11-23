@@ -31,7 +31,7 @@ function MovieComponent(props) {
                 <div className="dropdown-buttons" onClick={onEdit}>
                   <p>Edit</p>
                 </div>
-                <div className="dropdown-buttons" onClick={onDelete}>
+                <div className="dropdown-buttons" onClick={() => onDelete(id)}>
                   <p>Delete</p>
                 </div>
               </div>

@@ -24,17 +24,27 @@ function MovieSorterComponent(props) {
         </button>
       </div>
       <div className="buttons-rigth-wrapper">
-        <button
-          type="button"
-          onClick={() => {
-            onGetSortedFilms("title");
-          }}
-        >
+        <button type="button">
           <p>SORT BY</p>
         </button>
-        <button type="button" onClick={onGetFilmsByReleaseDate}>
-          <p>RELEASE DATE</p>
-        </button>
+        <div className="dropdown-sort">
+          <button className="dropbtnselect" onClick={onGetFilmsByReleaseDate}>
+            <p> RELEASE DATE</p>
+          </button>
+          <div className="dropdown-content-sort">
+            <p className="cursor-p" onClick={onGetFilmsByReleaseDate}>
+              RELEASE DATE
+            </p>
+            <p
+              className="cursor-p"
+              onClick={() => {
+                onGetSortedFilms("title");
+              }}
+            >
+              TITLE
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );

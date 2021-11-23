@@ -11,6 +11,17 @@ export const fetchAll = () => {
   };
 };
 
+export const searchByTitle = (title) => {
+  return (dispatch) => {
+    moviesDataService.searchByTitle(title).then((movies) => {
+      dispatch({
+        type: "movies/searchByTitle",
+        payload: movies,
+      });
+    });
+  };
+};
+
 export const fetchMovieById = (id) => {
   return (dispatch) => {
     moviesDataService.getMovieById(id).then((movie) => {
@@ -40,6 +51,16 @@ export const updateMovieInfo = (movie) => {
       dispatch({
         type: "movies/updateMovie",
         payload: movie.data,
+      });
+    });
+  };
+};
+
+export const deleteMovie = (id) => {
+  return (dispatch) => {
+    moviesDataService.deleteMovie(id).then(() => {
+      dispatch({
+        type: "movies/deleteMovie",
       });
     });
   };

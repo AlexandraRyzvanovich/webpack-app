@@ -12,6 +12,8 @@ import {
   searchByGenre,
   updateMovieInfo,
   addMovie,
+  deleteMovie,
+  searchByTitle,
 } from "../store/actions/movies";
 import HeaderContainer from "./header/headerContainer";
 import PopupContainer from "./popup/popupContainer";
@@ -25,6 +27,7 @@ function MovieAppContainer({
   movies,
   updateMovieInfo,
   addMovie,
+  deleteMovie,
   fetchMovieById,
   selectedMovie,
 }) {
@@ -50,6 +53,12 @@ function MovieAppContainer({
     updateMovieInfo(movie);
     handleToggleEditPopup();
   };
+
+  const handleDeleteMovie = (id) => {
+    deleteMovie(id);
+    handleToggleDeletePopup();
+    fetchAll();
+  };
   const handleToggleAddPopup = () => {
     setIsAddPopupOpened(!isAddPopupOpened);
   };
@@ -62,8 +71,9 @@ function MovieAppContainer({
     }
   };
 
-  const handleToggleDeletePopup = () => {
+  const handleToggleDeletePopup = (id) => {
     setIsDeletePopupOpened(!isDeletePopupOpened);
+    setMovieId(id);
   };
 
   const handleGetFilms = () => {
@@ -86,8 +96,9 @@ function MovieAppContainer({
     searchByGenre(genre);
   };
 
-  const handleSearch = () => {
-    // setFilms([]);
+  const handleSearch = (title) => {
+    debugger;
+    searchByTitle(title);
   };
 
   return (
@@ -117,14 +128,14 @@ function MovieAppContainer({
         isEditPopupOpened={isEditPopupOpened}
         isDeletePopupOpened={isDeletePopupOpened}
         onCloseAdd={handleToggleAddPopup}
-        onSaveAdd={handleToggleAddPopup}
         onCloseEdit={handleToggleEditPopup}
-        onSaveEdit={handleToggleEditPopup}
         onCloseDelete={handleToggleDeletePopup}
         onSaveDelete={handleToggleDeletePopup}
         movie={selectedMovie}
         onEdit={handleUpdateMovie}
         onAdd={handleAddMovie}
+        onDelete={handleDeleteMovie}
+        movieId={movieId}
       />
     </>
   );
@@ -146,4 +157,6 @@ export default connect(mapStateToProps, {
   searchByGenre,
   updateMovieInfo,
   addMovie,
+  deleteMovie,
+  searchByTitle,
 })(MovieAppContainer);

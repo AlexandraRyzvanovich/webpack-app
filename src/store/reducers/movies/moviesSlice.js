@@ -17,6 +17,9 @@ export default function moviesReducer(state = initialState, action) {
     case "movies?searchByGenre": {
       return action.payload;
     }
+    case "movies/searchByTitle": {
+      return action.payload;
+    }
     default:
       return state;
   }

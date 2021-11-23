@@ -14,6 +14,9 @@ export default function selectedMovieReducer(state = initialState, action) {
     case "movies/updateMovie": {
       return action.payload;
     }
+    case "movies/deleteMovie": {
+      return action.payload;
+    }
     default:
       return state;
   }
