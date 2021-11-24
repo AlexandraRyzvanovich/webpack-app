@@ -5,24 +5,10 @@ import MovieListComponent from "./movieListComponent";
 import MovieSorterComponent from "./movieSorterComponent";
 
 function MovieListContainer(props) {
-  const {
-    onGetFilmsByReleaseDate,
-    onGetAllFilms,
-    onGetSortedFilms,
-    onSearchByGenre,
-    movies,
-    onGetMovieInfo,
-    onEdit,
-    onDelete,
-  } = props;
+  const { movies, onGetMovieInfo, onEdit, onDelete } = props;
   return (
     <div className="background">
-      <MovieSorterComponent
-        onGetFilmsByReleaseDate={onGetFilmsByReleaseDate}
-        onGetAllFilms={onGetAllFilms}
-        onGetSortedFilms={onGetSortedFilms}
-        onSearchByGenre={onSearchByGenre}
-      />
+      <MovieSorterComponent />
       <MovieListComponent
         movies={movies}
         onGetMovieInfo={onGetMovieInfo}
@@ -34,10 +20,6 @@ function MovieListContainer(props) {
 }
 
 MovieListContainer.propTypes = {
-  onGetFilmsByReleaseDate: PropTypes.func.isRequired,
-  onGetAllFilms: PropTypes.func.isRequired,
-  onGetSortedFilms: PropTypes.func.isRequired,
-  onSearchByGenre: PropTypes.func.isRequired,
   movies: PropTypes.array.isRequired,
   onGetMovieInfo: PropTypes.func.isRequired,
   onEdit: PropTypes.func.isRequired,

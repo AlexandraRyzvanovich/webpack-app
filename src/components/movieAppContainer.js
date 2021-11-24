@@ -2,34 +2,29 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 
 import MovieListContainer from "./movieListContainer";
-
-import { fetchAll } from "../store/actions/movies";
 import {
-  fetchMovieById,
-  sortAllByReleaseDateASC,
-  sortAllByReleaseDateDESC,
-  sortAllByField,
-  searchByGenre,
+  fetchAll,
+  searchByTitle,
+} from "../store/reducers/movies/moviesActions";
+import {
   updateMovieInfo,
   addMovie,
   deleteMovie,
-  searchByTitle,
-} from "../store/actions/movies";
+  fetchMovieById,
+} from "../store/reducers/selectedMovie/selectedMovieActions";
+
 import HeaderContainer from "./header/headerContainer";
 import PopupContainer from "./popup/popupContainer";
 
 function MovieAppContainer({
   fetchAll,
-  sortAllByReleaseDateASC,
-  sortAllByReleaseDateDESC,
-  sortAllByField,
-  searchByGenre,
   movies,
   updateMovieInfo,
   addMovie,
   deleteMovie,
   fetchMovieById,
   selectedMovie,
+  searchByTitle,
 }) {
   const [isAddPopupOpened, setIsAddPopupOpened] = useState(false);
   const [isEditPopupOpened, setIsEditPopupOpened] = useState(false);
@@ -41,7 +36,6 @@ function MovieAppContainer({
   }, []);
 
   const handleGetMovieById = (id) => {
-    debugger;
     fetchMovieById(id);
   };
 
@@ -64,7 +58,6 @@ function MovieAppContainer({
   };
 
   const handleToggleEditPopup = (id) => {
-    debugger;
     setIsEditPopupOpened(!isEditPopupOpened);
     if (!isEditPopupOpened) {
       fetchMovieById(id);
@@ -80,24 +73,7 @@ function MovieAppContainer({
     fetchAll();
   };
 
-  const handleSortByRealeaseDate = (sortOrder) => {
-    if (sortOrder === "asc") {
-      sortAllByReleaseDateASC();
-    } else {
-      sortAllByReleaseDateDESC();
-    }
-  };
-
-  const handleSort = (sortField) => {
-    sortAllByField(sortField);
-  };
-
-  const handleSearchByGenre = (genre) => {
-    searchByGenre(genre);
-  };
-
   const handleSearch = (title) => {
-    debugger;
     searchByTitle(title);
   };
 
@@ -114,10 +90,6 @@ function MovieAppContainer({
         movie={selectedMovie}
       />
       <MovieListContainer
-        onGetFilmsByReleaseDate={handleSortByRealeaseDate}
-        onGetAllFilms={handleGetFilms}
-        onGetSortedFilms={handleSort}
-        onSearchByGenre={handleSearchByGenre}
         movies={movies}
         onGetMovieInfo={handleGetMovieById}
         onEdit={handleToggleEditPopup}
@@ -142,6 +114,7 @@ function MovieAppContainer({
 }
 
 const mapStateToProps = (state) => {
+  debugger;
   return {
     movies: state.movies,
     selectedMovie: state.selectedMovie,
@@ -151,10 +124,6 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
   fetchAll,
   fetchMovieById,
-  sortAllByReleaseDateASC,
-  sortAllByReleaseDateDESC,
-  sortAllByField,
-  searchByGenre,
   updateMovieInfo,
   addMovie,
   deleteMovie,

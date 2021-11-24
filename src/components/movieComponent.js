@@ -13,7 +13,6 @@ function MovieComponent(props) {
     id,
   } = props;
   const handleClick = () => {
-    debugger;
     onGetMovieInfo(id);
   };
   return (

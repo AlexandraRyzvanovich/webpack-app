@@ -6,12 +6,11 @@ import MovieComponent from "./movieComponent";
 
 function MovieListComponent(props) {
   const { movies, onGetMovieInfo, onEdit, onDelete } = props;
-  debugger;
   return (
     <>
-      <p className="list-size-text">{movies.length} MOVIES FOUND</p>
+      <p className="list-size-text">{movies.totalAmount} MOVIES FOUND</p>
       <div className="list-wrapper">
-        {movies.map((movie) => (
+        {movies.data.map((movie) => (
           <MovieComponent
             id={movie.id}
             poster_path={movie.poster_path}
@@ -29,10 +28,11 @@ function MovieListComponent(props) {
 }
 
 MovieListComponent.propTypes = {
-  movies: PropTypes.array.isRequired,
+  movies: PropTypes.object.isRequired,
   onGetMovieInfo: PropTypes.func.isRequired,
   onEdit: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
+  size: PropTypes.func.isRequired,
 };
 
 export default MovieListComponent;

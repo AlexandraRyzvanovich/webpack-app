@@ -5,16 +5,16 @@ import useMovieInfo from "../../hooks/useMovieInfo";
 
 function EditPopup(props) {
   const { onClose, movie, onEdit } = props;
-  useMovieInfo(movie);
+  // useMovieInfo(movie);
   const [title, setTitle] = useState(movie.title);
   const [release_date, setReleaseDate] = useState(movie.release_date);
   const [vote_average, setVoteAverage] = useState(movie.vote_average);
   const [tagline, setTagline] = useState(movie.tagline);
   const [overview, setOverview] = useState(movie.overview);
   const [runtime, setRuntime] = useState(movie.runtime);
-  debugger;
+
   const changedMovie = {
-    title: title === undefined ? movie.title : title,
+    title,
     tagline: tagline === undefined ? movie.tagline : tagline,
     vote_average:
       vote_average === undefined ? movie.vote_average : vote_average,
@@ -28,6 +28,10 @@ function EditPopup(props) {
     runtime: runtime === undefined ? movie.runtime : runtime,
     genres: movie.genres,
     id: movie.id,
+  };
+
+  const handleSubmit = () => {
+    onEdit(changedMovie);
   };
 
   return (
@@ -52,7 +56,6 @@ function EditPopup(props) {
             placeholder={movie.title}
             value={title}
             onChange={(v) => {
-              debugger;
               setTitle(v.target.value);
             }}
           ></input>
@@ -113,9 +116,7 @@ function EditPopup(props) {
             <button
               type="submit"
               className="button-submit"
-              onClick={() => {
-                onEdit(changedMovie);
-              }}
+              onClick={handleSubmit}
             >
               SUBMIT
             </button>

@@ -1,6 +1,10 @@
-const initialState = [];
+const initialState = {
+  data: [],
+  totalAmount: 0,
+};
 
 export default function moviesReducer(state = initialState, action) {
+  debugger;
   switch (action.type) {
     case "movies/fetchAll": {
       return action.payload;

@@ -2,94 +2,36 @@ import http from "../http-common";
 
 class MoviesDataService {
   getAllMovies() {
-    return http.get("/movies").then(({ data }) =>
-      data.data.map(({ id, poster_path, title, release_date, genres }) => ({
-        id,
-        poster_path,
-        title,
-        genres,
-        release_date,
-      }))
-    );
+    return http.get("/movies");
   }
 
   sortAllByReleaseDateASC() {
-    return http
-      .get("/movies?sortBy=release_date&sortOrder=asc")
-      .then(({ data }) =>
-        data.data.map(({ id, poster_path, title, release_date, genres }) => ({
-          id,
-          poster_path,
-          title,
-          genres,
-          release_date,
-        }))
-      );
+    debugger;
+    return http.get("/movies?sortBy=release_date&sortOrder=asc");
   }
 
   sortAllByReleaseDateDESC() {
-    return http
-      .get("/movies?sortBy=release_date&sortOrder=asc")
-      .then(({ data }) =>
-        data.data.map(({ id, poster_path, title, release_date, genres }) => ({
-          id,
-          poster_path,
-          title,
-          genres,
-          release_date,
-        }))
-      );
+    return http.get("/movies?sortBy=release_date&sortOrder=desc");
   }
 
   sortByField(fieldName) {
-    debugger;
-    return http
-      .get("/movies?sortBy=" + fieldName + "&sortOrder=asc")
-      .then(({ data }) =>
-        data.data.map(({ id, poster_path, title, release_date, genres }) => ({
-          id,
-          poster_path,
-          title,
-          genres,
-          release_date,
-        }))
-      );
+    return http.get("/movies?sortBy=" + fieldName + "&sortOrder=asc");
   }
 
   searchByGenre(genre) {
-    return http.get("/movies?searchBy=title&filter=" + genre).then(({ data }) =>
-      data.data.map(({ id, poster_path, title, release_date, genres }) => ({
-        id,
-        poster_path,
-        title,
-        genres,
-        release_date,
-      }))
-    );
+    return http.get("/movies?searchBy=title&filter=" + genre);
   }
 
   searchByTitle(title) {
     debugger;
-    return http
-      .get("/movies?search=" + title + "&searchBy=title")
-      .then(({ data }) =>
-        data.data.map(({ id, poster_path, title, release_date, genres }) => ({
-          id,
-          poster_path,
-          title,
-          genres,
-          release_date,
-        }))
-      );
+    return http.get("/movies?search=" + title + "&searchBy=title");
   }
 
   getMovieById(id) {
-    debugger;
     return http.get("/movies/" + id);
   }
 
   addMovie(movie) {
-    debugger;
     return http.post("/movies", movie);
   }
 

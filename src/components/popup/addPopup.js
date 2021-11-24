@@ -1,29 +1,35 @@
 import React from "react";
 import { useState } from "react";
-import InputNumber from "react-input-number";
+import { addMovie } from "../../store/reducers/selectedMovie/selectedMovieActions";
+import { useCallback } from "react";
+import { connect } from "react-redux";
+
 import PropTypes from "prop-types";
 
-function AddPopup(props) {
-  const { onClose, onAdd } = props;
+function AddPopup({ onClose, onAdd, addMovie }) {
   const [title, setTitle] = useState("");
   const [release_date, setReleaseDate] = useState("");
   const [poster_path, setPosterPath] = useState("");
   const [genres, setGenres] = useState([]);
   const [overview, setOverview] = useState("");
-  const [runtime, setRuntime] = useState(0);
+  const [runtime, setRuntime] = useState();
+
   const newMovie = {
-    title: title,
-    release_date: release_date,
-    poster_path: poster_path,
-    genres: genres,
-    overview: overview,
-    runtime: runtime,
+    title,
+    release_date,
+    poster_path,
+    genres,
+    overview,
+    runtime: parseInt(runtime),
   };
 
   const getGenres = (inputString) => {
     const re = "/s*,s*/";
     setGenres(inputString.split(re));
   };
+  const handleAddMovie = useCallback(() => {
+    addMovie(newMovie);
+  }, []);
   return (
     <div className="popup-box">
       <div className="box">
@@ -94,7 +100,7 @@ function AddPopup(props) {
             className="input-add"
             placeholder="Runtime here"
             value={runtime}
-            onChange={(v) => setRuntime(parseInt(v.target.value))}
+            onChange={(v) => setRuntime(v.target.value)}
           />
         </div>
         <div className="buttons-wrapper">
@@ -107,7 +113,7 @@ function AddPopup(props) {
             <button
               type="submit"
               className="button-submit"
-              onClick={() => onAdd(newMovie)}
+              onClick={handleAddMovie}
             >
               SUBMIT
             </button>
@@ -122,4 +128,12 @@ AddPopup.propTypes = {
   onAdd: PropTypes.func.isRequired,
 };
 
-export default AddPopup;
+const mapStateToProps = (state) => {
+  return {
+    selectedMovie: state.selectedMovie,
+  };
+};
+
+export default connect(mapStateToProps, {
+  addMovie,
+})(AddPopup);

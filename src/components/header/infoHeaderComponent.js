@@ -5,7 +5,6 @@ import LogoComponent from "./logoComponent";
 
 function InfoHeader(props) {
   useMovieInfo(props.movie);
-  debugger;
 
   return (
     <header className="header-info">

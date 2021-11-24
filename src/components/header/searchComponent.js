@@ -1,10 +1,20 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { useCallback } from "react";
+import { searchByTitle } from "../../store/reducers/movies/moviesActions";
 
 import "./../../styles/search.scss";
 
-function SearchComponent(props) {
+function SearchComponent({ searchByTitle }) {
   const [title, setTitle] = useState("");
+  const hanleOnChange = (value) => {
+    setTitle(value);
+  };
+
+  const handleSearchByTitle = useCallback(() => {
+    searchByTitle(title);
+  }, []);
+
   return (
     <>
       <div className="search-wrapper">
@@ -12,12 +22,12 @@ function SearchComponent(props) {
           placeholder="What do you want to watch?"
           type="input"
           className="input-search"
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={(e) => hanleOnChange(e.target.value)}
         ></input>
         <button
           type="submit"
           className="button-search"
-          onClick={() => props.onSearch(title)}
+          onClick={handleSearchByTitle}
         >
           <p>SEARCH</p>
         </button>
@@ -25,8 +35,13 @@ function SearchComponent(props) {
     </>
   );
 }
-SearchComponent.propTypes = {
-  onSearch: PropTypes.func.isRequired,
+
+const mapStateToProps = (state) => {
+  return {
+    movies: state.movies,
+  };
 };
 
-export default SearchComponent;
+export default connect(mapStateToProps, {
+  searchByTitle,
+})(SearchComponent);

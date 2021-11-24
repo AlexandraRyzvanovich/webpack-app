@@ -17,6 +17,5 @@ export default useMovieInfo;
 // const dispatch = useDispatch();
 // useEffect(() => {
 // dispatch(fetchMovieById());
-
 //   }, []);
 // };
