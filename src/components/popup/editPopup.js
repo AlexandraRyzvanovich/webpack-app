@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-import useMovieInfo from "../../hooks/useMovieInfo";
-
 function EditPopup(props) {
   const { onClose, movie, onEdit } = props;
-  // useMovieInfo(movie);
+
   const [title, setTitle] = useState(movie.title);
   const [release_date, setReleaseDate] = useState(movie.release_date);
   const [vote_average, setVoteAverage] = useState(movie.vote_average);
@@ -15,23 +13,22 @@ function EditPopup(props) {
 
   const changedMovie = {
     title,
-    tagline: tagline === undefined ? movie.tagline : tagline,
-    vote_average:
-      vote_average === undefined ? movie.vote_average : vote_average,
-    vote_count: movie.vote_count,
-    release_date:
-      release_date === undefined ? movie.release_date : release_date,
+    tagline,
+    vote_average: parseInt(movie.vote_average),
+    vote_count: parseInt(movie.vote_count),
+    release_date,
     poster_path: movie.poster_path,
-    overview: overview === undefined ? movie.overview : overview,
+    overview,
     budget: movie.budget,
     revenue: movie.revenue,
-    runtime: runtime === undefined ? movie.runtime : runtime,
+    runtime: parseInt(movie.runtime),
     genres: movie.genres,
     id: movie.id,
   };
 
   const handleSubmit = () => {
     onEdit(changedMovie);
+    onClose();
   };
 
   return (
@@ -64,6 +61,7 @@ function EditPopup(props) {
           <p className="input-title">RELEASE DATE</p>
           <input
             className="input-add"
+            type="date"
             placeholder={movie.release_date}
             value={release_date}
             onChange={(v) => setReleaseDate(v.target.value)}

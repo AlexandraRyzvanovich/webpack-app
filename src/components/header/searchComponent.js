@@ -11,9 +11,9 @@ function SearchComponent({ searchByTitle }) {
     setTitle(value);
   };
 
-  const handleSearchByTitle = useCallback(() => {
+  const handleSearchByTitle = () => {
     searchByTitle(title);
-  }, []);
+  };
 
   return (
     <>

@@ -5,8 +5,9 @@ import CommonHeader from "./commonHeaderComponent";
 import InfoHeader from "./infoHeaderComponent";
 
 function HeaderContainer(props) {
-  const { onOpen, onSearch, id, onClearSelection, movie } = props;
-  if (movie.length == 0) {
+  const { onOpen, id, onClearSelection, movie, onOpenCommonHeader } = props;
+  debugger;
+  if (onOpenCommonHeader || onOpenCommonHeader === undefined) {
     return <CommonHeader onOpen={onOpen} />;
   }
   return (

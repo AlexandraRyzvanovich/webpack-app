@@ -27,9 +27,10 @@ function AddPopup({ onClose, onAdd, addMovie }) {
     const re = "/s*,s*/";
     setGenres(inputString.split(re));
   };
-  const handleAddMovie = useCallback(() => {
+  const handleAddMovie = () => {
     addMovie(newMovie);
-  }, []);
+    onClose();
+  };
   return (
     <div className="popup-box">
       <div className="box">
