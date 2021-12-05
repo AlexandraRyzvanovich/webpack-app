@@ -36,10 +36,11 @@ function EditPopup(props) {
 
   const formik = useFormik({
     initialValues: {
+      id: movie.id,
       title: movie.title,
       release_date: movie.release_date,
       poster_path: movie.poster_path,
-      genres: movie.genres,
+      tagline: movie.tagline,
       overview: movie.overview,
       runtime: movie.runtime,
     },
@@ -109,14 +110,14 @@ function EditPopup(props) {
                 ) : null}
               </div>
               <div className="input-add-wrapper">
-                <p className="input-title">GENRES</p>
-                <Field
-                  component={SelectField}
-                  name="genres"
-                  id="genres"
-                  options={options}
-                  value={formik.values.genres}
-                  // onChange={formik.handleChange}
+                <p className="input-title">TAGLINE</p>
+                <input
+                  className="input-add"
+                  type="input"
+                  id="tagline"
+                  placeholder={movie.tagline}
+                  onChange={formik.handleChange}
+                  value={formik.values.tagline}
                 />
               </div>
               <div className="input-add-wrapper">
