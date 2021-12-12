@@ -11,22 +11,24 @@ function PopupContainer(props) {
     isEditPopupOpened,
     isDeletePopupOpened,
     onCloseAdd,
-    onSaveAdd,
     onCloseEdit,
-    onSaveEdit,
     onCloseDelete,
-    onSaveDelete,
+    onEdit,
+    onAdd,
+    movie,
+    onDelete,
+    movieId,
   } = props;
   return (
     <>
-      {isAddPopupOpened && <AddPopup onClose={onCloseAdd} onSave={onSaveAdd} />}
+      {isAddPopupOpened && <AddPopup onClose={onCloseAdd} onAdd={onAdd} />}
 
       {isEditPopupOpened && (
-        <EditPopup onSave={onSaveEdit} onClose={onCloseEdit} />
+        <EditPopup onClose={onCloseEdit} movie={movie} onEdit={onEdit} />
       )}
 
       {isDeletePopupOpened && (
-        <DeletePopup onSave={onSaveDelete} onClose={onCloseDelete} />
+        <DeletePopup onClose={onCloseDelete} onDelete={onDelete} id={movieId} />
       )}
     </>
   );
@@ -36,11 +38,14 @@ PopupContainer.propTypes = {
   isAddPopupOpened: PropTypes.bool.isRequired,
   isEditPopupOpened: PropTypes.bool.isRequired,
   isDeletePopupOpened: PropTypes.bool.isRequired,
-  onCloseAdd: PropTypes.func.isRequired,
   onSaveAdd: PropTypes.func.isRequired,
-  onCloseEdit: PropTypes.func.isRequired,
   onSaveEdit: PropTypes.func.isRequired,
+  onCloseAdd: PropTypes.func.isRequired,
+  onCloseEdit: PropTypes.func.isRequired,
   onCloseDelete: PropTypes.func.isRequired,
   onSaveDelete: PropTypes.func.isRequired,
+  movie: PropTypes.object,
+  onEdit: PropTypes.func.isRequired,
+  onAdd: PropTypes.func.isRequired,
 };
 export default PopupContainer;

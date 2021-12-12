@@ -1,39 +1,78 @@
 import React, { useEffect, useState } from "react";
-import MovieService from "../service/movieService";
+import { connect } from "react-redux";
 
 import MovieListContainer from "./movieListContainer";
+import {
+  fetchAll,
+  searchByTitle,
+} from "../store/reducers/movies/moviesActions";
+import {
+  updateMovieInfo,
+  addMovie,
+  deleteMovie,
+  fetchMovieById,
+} from "../store/reducers/selectedMovie/selectedMovieActions";
+
 import HeaderContainer from "./header/headerContainer";
 import PopupContainer from "./popup/popupContainer";
 
-function MovieAppContainer() {
-  const [films, setFilms] = useState([]);
+function MovieAppContainer({
+  fetchAll,
+  movies,
+  updateMovieInfo,
+  addMovie,
+  deleteMovie,
+  fetchMovieById,
+  selectedMovie,
+  searchByTitle,
+}) {
   const [isAddPopupOpened, setIsAddPopupOpened] = useState(false);
   const [isEditPopupOpened, setIsEditPopupOpened] = useState(false);
   const [isDeletePopupOpened, setIsDeletePopupOpened] = useState(false);
   const [movieId, setMovieId] = useState();
+  const [isCommmonHeaderOpened, setisCommmonHeaderOpened] = useState(true);
 
   useEffect(() => {
-    setFilms(MovieService.getAllMovies());
+    fetchAll();
   }, []);
 
+  const handleGetMovieById = (id) => {
+    fetchMovieById(id);
+    setisCommmonHeaderOpened(false);
+  };
+
+  const handleAddMovie = (movie) => {
+    addMovie(movie);
+    handleToggleAddPopup();
+  };
+  const handleUpdateMovie = (movie) => {
+    updateMovieInfo(movie);
+    handleToggleEditPopup();
+  };
+
+  const handleDeleteMovie = (id) => {
+    deleteMovie(id);
+    handleToggleDeletePopup();
+    fetchAll();
+  };
   const handleToggleAddPopup = () => {
     setIsAddPopupOpened(!isAddPopupOpened);
   };
 
-  const handleToggleEditPopup = () => {
+  const handleToggleEditPopup = (id) => {
     setIsEditPopupOpened(!isEditPopupOpened);
+    if (!isEditPopupOpened) {
+      fetchMovieById(id);
+    }
   };
 
-  const handleToggleDeletePopup = () => {
+  const handleToggleDeletePopup = (id) => {
     setIsDeletePopupOpened(!isDeletePopupOpened);
+    setMovieId(id);
   };
 
-  const handleGetFilms = () => {
-    setFilms(MovieService.getAllMovies());
-  };
-
-  const handleSearch = () => {
-    setFilms([]);
+  const handleSearch = (title) => {
+    searchByTitle(title);
   };
 
   return (
@@ -41,15 +80,16 @@ function MovieAppContainer() {
       <HeaderContainer
         onOpen={handleToggleAddPopup}
         onSearch={handleSearch}
-        id={movieId}
+        id={movieId} //set id
         onClearSelection={() => {
-          setMovieId(undefined);
+          setisCommmonHeaderOpened(true);
         }}
+        movie={selectedMovie}
+        onOpenCommonHeader={isCommmonHeaderOpened}
       />
       <MovieListContainer
-        onGetFilms={handleGetFilms}
-        items={films}
-        onGetMovieInfo={setMovieId}
+        movies={movies}
+        onGetMovieInfo={handleGetMovieById}
         onEdit={handleToggleEditPopup}
         onDelete={handleToggleDeletePopup}
       />
@@ -58,13 +98,32 @@ function MovieAppContainer() {
         isEditPopupOpened={isEditPopupOpened}
         isDeletePopupOpened={isDeletePopupOpened}
         onCloseAdd={handleToggleAddPopup}
-        onSaveAdd={handleToggleAddPopup}
         onCloseEdit={handleToggleEditPopup}
-        onSaveEdit={handleToggleEditPopup}
         onCloseDelete={handleToggleDeletePopup}
         onSaveDelete={handleToggleDeletePopup}
+        movie={selectedMovie}
+        onEdit={handleUpdateMovie}
+        onAdd={handleAddMovie}
+        onDelete={handleDeleteMovie}
+        movieId={movieId}
       />
     </>
   );
 }
-export default MovieAppContainer;
+
+const mapStateToProps = (state) => {
+  debugger;
+  return {
+    movies: state.movies,
+    selectedMovie: state.selectedMovie,
+  };
+};
+
+export default connect(mapStateToProps, {
+  fetchAll,
+  fetchMovieById,
+  updateMovieInfo,
+  addMovie,
+  deleteMovie,
+  searchByTitle,
+})(MovieAppContainer);

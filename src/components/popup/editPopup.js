@@ -1,10 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-import useMovieInfo from "../../hooks/useMovieInfo";
+function EditPopup(props) {
+  const { onClose, movie, onEdit } = props;
 
-function EditPopup({ onClose, id }) {
-  const movie = useMovieInfo(id);
+  const [title, setTitle] = useState(movie.title);
+  const [release_date, setReleaseDate] = useState(movie.release_date);
+  const [vote_average, setVoteAverage] = useState(movie.vote_average);
+  const [tagline, setTagline] = useState(movie.tagline);
+  const [overview, setOverview] = useState(movie.overview);
+  const [runtime, setRuntime] = useState(movie.runtime);
+
+  const changedMovie = {
+    title,
+    tagline,
+    vote_average: parseInt(movie.vote_average),
+    vote_count: parseInt(movie.vote_count),
+    release_date,
+    poster_path: movie.poster_path,
+    overview,
+    budget: movie.budget,
+    revenue: movie.revenue,
+    runtime: parseInt(movie.runtime),
+    genres: movie.genres,
+    id: movie.id,
+  };
+
+  const handleSubmit = () => {
+    onEdit(changedMovie);
+    onClose();
+  };
 
   return (
     <div className="popup-box">
@@ -23,30 +48,60 @@ function EditPopup({ onClose, id }) {
         </div>
         <div className="input-add-wrapper">
           <p className="input-title">TITLE</p>
-          <input className="input-add" placeholder={movie.name}></input>
+          <input
+            className="input-add"
+            placeholder={movie.title}
+            value={title}
+            onChange={(v) => {
+              setTitle(v.target.value);
+            }}
+          ></input>
         </div>
         <div className="input-add-wrapper">
           <p className="input-title">RELEASE DATE</p>
-          <input className="input-add" placeholder={movie.year}></input>
+          <input
+            className="input-add"
+            type="date"
+            placeholder={movie.release_date}
+            value={release_date}
+            onChange={(v) => setReleaseDate(v.target.value)}
+          ></input>
         </div>
         <div className="input-add-wrapper">
-          <p className="input-title">MOVIW URL</p>
-          <input className="input-add" placeholder={movie.url}></input>
+          <p className="input-title">AVERAGE VOTE</p>
+          <input
+            className="input-add"
+            placeholder={movie.vote_average}
+            value={vote_average}
+            onChange={(v) => setVoteAverage(v.target.value)}
+          ></input>
         </div>
         <div className="input-add-wrapper">
-          <p className="input-title">GENRE</p>
-          <input className="input-add" placeholder={movie.comment}></input>
+          <p className="input-title">TAGLINE</p>
+          <input
+            className="input-add"
+            placeholder={movie.tagline}
+            value={tagline}
+            onChange={(v) => setTagline(v.target.value)}
+          ></input>
         </div>
         <div className="input-add-wrapper">
           <p className="input-title">OVERVIEW</p>
-          <input className="input-add" placeholder={movie.description}></input>
+          <input
+            className="input-add"
+            placeholder={movie.overview}
+            value={overview}
+            onChange={(v) => setOverview(v.target.value)}
+          ></input>
         </div>
         <div className="input-add-wrapper">
           <p className="input-title">RUNTIME</p>
           <input
-            placeholder={movie.comment}
+            placeholder={movie.runtime}
             type="input"
             className="input-add"
+            value={runtime}
+            onChange={(v) => setRuntime(v.target.value)}
           ></input>
         </div>
         <div className="buttons-wrapper">
@@ -56,7 +111,11 @@ function EditPopup({ onClose, id }) {
                 RESET
               </button>
             </div>
-            <button type="submit" className="button-submit" onClick={onClose}>
+            <button
+              type="submit"
+              className="button-submit"
+              onClick={handleSubmit}
+            >
               SUBMIT
             </button>
           </div>
@@ -68,5 +127,7 @@ function EditPopup({ onClose, id }) {
 
 EditPopup.propTypes = {
   onClose: PropTypes.func.isRequired,
+  onEdit: PropTypes.func.isRequired,
+  movie: PropTypes.func.isRequired,
 };
 export default EditPopup;

@@ -1,13 +1,21 @@
 import { useEffect, useState } from "react";
-import MovieService from "../service/movieService";
-const useMovieInfo = (id) => {
-  const [movie, setMovie] = useState("");
+import { useSelector, useDispatch } from "react-redux";
 
+const useMovieInfo = (selectedMovie) => {
+  const [movie, setMovie] = useState("");
   useEffect(() => {
-    setMovie(MovieService.getFullMovieInfo(id));
+    setMovie(selectedMovie);
   }, []);
 
   return movie;
 };
 
 export default useMovieInfo;
+
+// const useMovieInfo = (movie) => {
+// const selectedMovie = useSelector((state) => state.selectedMovie);
+// const dispatch = useDispatch();
+// useEffect(() => {
+// dispatch(fetchMovieById());
+//   }, []);
+// };

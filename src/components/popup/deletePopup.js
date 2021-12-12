@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 function DeletePopup(props) {
-  const { onClose } = props;
+  const { onClose, onDelete, id } = props;
   return (
     <div className="popup-box">
       <div className="box-delete">
@@ -19,13 +19,13 @@ function DeletePopup(props) {
         </div>
         <div className="buttons-wrapper">
           <div className="button-wrapper">
-            <div className="button-reset-wrapper">
-              <button type="submit" className="button-reset" onClick={onClose}>
-                RESET
-              </button>
-            </div>
-            <button type="submit" className="button-submit" onClick={onClose}>
-              SUBMIT
+            <div className="button-reset-wrapper"></div>
+            <button
+              type="submit"
+              className="button-submit"
+              onClick={() => onDelete(id)}
+            >
+              CONFIRM
             </button>
           </div>
         </div>

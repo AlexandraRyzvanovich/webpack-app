@@ -13,7 +13,7 @@ function CommonHeader(props) {
         <button type="submit" className="button-add" onClick={props.onOpen}>
           <p>+ ADD MOVIE</p>
         </button>
-        <SearchComponent onSearch={props.onSearch} />
+        <SearchComponent />
       </header>
     </>
   );
