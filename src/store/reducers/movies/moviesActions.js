@@ -46,7 +46,6 @@ export const sortAllByReleaseDateDESC = () => {
 };
 
 export const fetchAll = () => {
-  debugger;
   return (dispatch) => {
     moviesDataService.getAllMovies().then((movies) => {
       dispatch({

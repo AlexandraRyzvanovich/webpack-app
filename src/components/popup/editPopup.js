@@ -1,35 +1,33 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useFormik, Field, Formik } from "formik";
-import SelectField from "./CustomSelect";
+import { connect } from "react-redux";
+import { updateMovieInfo } from "../../store/reducers/selectedMovie/selectedMovieActions";
 
-function EditPopup(props) {
-  const { onClose, movie, onEdit } = props;
-
+function EditPopup({ updateMovieInfo, onClose, movie }) {
   const handleEdit = (values) => {
-    onEdit(values);
+    updateMovieInfo(values);
     onClose();
   };
 
-  const options = [
-    { value: "Horror", label: "Horror" },
-    { value: "Documentarie", label: "Documentarie" },
-    { value: "Comedy", label: "Comedy" },
-    { value: "Adventure", label: "Adventure" },
-  ];
-
   const validate = (values) => {
     const errors = {};
-    if (values.title.length > 15) {
-      errors.title = "Must be 15 characters or less";
+    if (values?.title?.length < 2) {
+      errors.title = "Must be 2 characters or more";
     }
-
-    if (!values.poster_path.includes("http")) {
+    debugger;
+    if (
+      !values?.poster_path?.includes("http") &&
+      formik.initialValues.poster_path === undefined
+    ) {
       errors.poster_path = "Poster path must be a link";
     }
 
-    if (values.overview.length > 15) {
-      errors.overview = "Must be 15 characters or less";
+    if (
+      values?.overview?.length < 15 &&
+      formik.initialValues.overview === undefined
+    ) {
+      errors.overview = "Must be 15 characters or more";
     }
     return errors;
   };
@@ -44,6 +42,7 @@ function EditPopup(props) {
       overview: movie.overview,
       runtime: movie.runtime,
     },
+    enableReinitialize: true,
     validate,
     onSubmit: (values) => {
       handleEdit(values);
@@ -75,7 +74,7 @@ function EditPopup(props) {
                   className="input-add"
                   id="title"
                   type="input"
-                  placeholder={movie.title}
+                  placeholder={formik.initialValues.title}
                   onChange={formik.handleChange}
                   value={formik.values.title}
                 />
@@ -177,4 +176,12 @@ EditPopup.propTypes = {
   onEdit: PropTypes.func.isRequired,
   movie: PropTypes.func.isRequired,
 };
-export default EditPopup;
+
+const mapStateToProps = (state) => {
+  return {
+    selectedMovie: state.selectedMovie,
+  };
+};
+export default connect(mapStateToProps, {
+  updateMovieInfo,
+})(EditPopup);

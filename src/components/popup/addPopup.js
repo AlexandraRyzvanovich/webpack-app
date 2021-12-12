@@ -6,7 +6,7 @@ import { useFormik, Field, Formik } from "formik";
 import SelectField from "./CustomSelect";
 import PropTypes from "prop-types";
 
-function AddPopup({ onClose, addMovie }) {
+function AddPopup({ addMovie, onClose }) {
   const [title, setTitle] = useState("");
   const [release_date, setReleaseDate] = useState("");
   const [poster_path, setPosterPath] = useState("");
