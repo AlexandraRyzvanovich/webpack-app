@@ -39,7 +39,7 @@ class MoviesDataService {
     return http.put("/movies", movie);
   }
   deleteMovie(id) {
-    return http.delete("/movies/" + id).then(this.getAllMovies);
+    return http.delete("/movies/" + id);
   }
 }
 export default new MoviesDataService();

@@ -1,15 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { deleteMovie } from "../../store/reducers/selectedMovie/selectedMovieActions";
-import { fetchAll } from "../../store/reducers/movies/moviesActions";
-import { connect } from "react-redux";
 
-function DeletePopup({ deleteMovie, onClose, id, movies }) {
-  const handleDelete = (id) => {
-    deleteMovie(id);
-    fetchAll();
-    onClose();
-  };
+function ConfirmationPopup(props) {
+  const { onClose, onDelete, id } = props;
   return (
     <div className="popup-box">
       <div className="box-delete">
@@ -30,7 +23,7 @@ function DeletePopup({ deleteMovie, onClose, id, movies }) {
             <button
               type="submit"
               className="button-submit"
-              onClick={() => handleDelete(id)}
+              onClick={() => onDelete(id)}
             >
               CONFIRM
             </button>
@@ -44,14 +37,4 @@ function DeletePopup({ deleteMovie, onClose, id, movies }) {
 DeletePopup.propTypes = {
   onClose: PropTypes.func.isRequierd,
 };
-
-const mapStateToProps = (state) => {
-  return {
-    selectedMovie: state.selectedMovie,
-    movies: state.movies,
-  };
-};
-export default connect(mapStateToProps, {
-  deleteMovie,
-  fetchAll,
-})(DeletePopup);
+export default ConfirmationPopup;

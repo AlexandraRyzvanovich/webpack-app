@@ -8,7 +8,6 @@ import {
 } from "../store/reducers/movies/moviesActions";
 import {
   updateMovieInfo,
-  addMovie,
   deleteMovie,
   fetchMovieById,
 } from "../store/reducers/selectedMovie/selectedMovieActions";
@@ -19,9 +18,6 @@ import PopupContainer from "./popup/popupContainer";
 function MovieAppContainer({
   fetchAll,
   movies,
-  updateMovieInfo,
-  addMovie,
-  deleteMovie,
   fetchMovieById,
   selectedMovie,
   searchByTitle,
@@ -41,20 +37,6 @@ function MovieAppContainer({
     setisCommmonHeaderOpened(false);
   };
 
-  const handleAddMovie = (movie) => {
-    addMovie(movie);
-    handleToggleAddPopup();
-  };
-  const handleUpdateMovie = (movie) => {
-    updateMovieInfo(movie);
-    handleToggleEditPopup();
-  };
-
-  const handleDeleteMovie = (id) => {
-    deleteMovie(id);
-    handleToggleDeletePopup();
-    fetchAll();
-  };
   const handleToggleAddPopup = () => {
     setIsAddPopupOpened(!isAddPopupOpened);
   };
@@ -102,9 +84,6 @@ function MovieAppContainer({
         onCloseDelete={handleToggleDeletePopup}
         onSaveDelete={handleToggleDeletePopup}
         movie={selectedMovie}
-        onEdit={handleUpdateMovie}
-        onAdd={handleAddMovie}
-        onDelete={handleDeleteMovie}
         movieId={movieId}
       />
     </>
@@ -112,7 +91,6 @@ function MovieAppContainer({
 }
 
 const mapStateToProps = (state) => {
-  debugger;
   return {
     movies: state.movies,
     selectedMovie: state.selectedMovie,
@@ -123,7 +101,6 @@ export default connect(mapStateToProps, {
   fetchAll,
   fetchMovieById,
   updateMovieInfo,
-  addMovie,
   deleteMovie,
   searchByTitle,
 })(MovieAppContainer);

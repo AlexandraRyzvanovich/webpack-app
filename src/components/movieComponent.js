@@ -40,9 +40,9 @@ function MovieComponent(props) {
         <div className="description-wrapper">
           <div>
             <p>{title}</p>
-            {genres.map((genre) => (
-              <p>{genre}</p>
-            ))}
+            {genres !== undefined
+              ? genres.map((genre) => <p>{genre}</p>)
+              : null}
           </div>
           <div className="year">
             <p>{release_date}</p>
