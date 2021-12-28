@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import "./../styles/movieList.scss";
 import MovieComponent from "./movieComponent";
 
 function MovieListComponent(props) {

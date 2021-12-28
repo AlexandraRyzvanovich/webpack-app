@@ -10,6 +10,12 @@ import "./../styles/common.scss";
 import "./../styles/popup.scss";
 import "./../styles/movie.scss";
 import "./../styles/infoHeader.scss";
+import "./../styles/logo.scss";
+import "./../styles/search.scss";
+import "./../styles/footer.scss";
+import "./../styles/common.scss";
+import "./../styles/movieList.scss";
+import "./../styles/movieListHeader.scss";
 
 function App() {
   return (
