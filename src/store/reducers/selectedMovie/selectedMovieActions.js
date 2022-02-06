@@ -4,7 +4,7 @@ export const fetchMovieById = (id) => {
   return (dispatch) => {
     moviesDataService.getMovieById(id).then((movie) => {
       dispatch({
-        type: "movies/fetchMovieById",
+        type: "movies/byId",
         payload: movie.data,
       });
     });
@@ -26,7 +26,7 @@ export const updateMovieInfo = (movie) => {
   return (dispatch) => {
     moviesDataService.updateMovie(movie).then((movie) => {
       dispatch({
-        type: "movies/updateMovie",
+        type: "movies/byId",
         payload: movie.data,
       });
     });
@@ -37,7 +37,7 @@ export const deleteMovie = (id) => {
   return (dispatch) => {
     moviesDataService.deleteMovie(id).then(() => {
       dispatch({
-        type: "movies/deleteMovie",
+        type: "movies/byId",
       });
     });
   };

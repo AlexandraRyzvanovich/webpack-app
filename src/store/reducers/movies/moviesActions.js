@@ -4,7 +4,7 @@ export const sortAllByField = (fieldName) => {
   return (dispatch) => {
     moviesDataService.sortByField(fieldName).then((movies) => {
       dispatch({
-        type: "movies?sortBy",
+        type: "movies/fetch",
         payload: movies.data,
       });
     });
@@ -12,11 +12,10 @@ export const sortAllByField = (fieldName) => {
 };
 
 export const searchByGenre = (genre) => {
-  debugger;
   return (dispatch) => {
     moviesDataService.searchByGenre(genre).then((movies) => {
       dispatch({
-        type: "movies?searchByGenre",
+        type: "movies/fetch",
         payload: movies.data,
       });
     });
@@ -27,7 +26,7 @@ export const sortAllByReleaseDateASC = () => {
   return (dispatch) => {
     moviesDataService.sortAllByReleaseDateASC().then((movies) => {
       dispatch({
-        type: "movies?sortByReleaseDateASC",
+        type: "movies/fetch",
         payload: movies.data,
       });
     });
@@ -38,7 +37,7 @@ export const sortAllByReleaseDateDESC = () => {
   return (dispatch) => {
     moviesDataService.sortAllByReleaseDateDESC().then((movies) => {
       dispatch({
-        type: "movies?sortByReleaseDateDESC",
+        type: "movies/fetch",
         payload: movies.data,
       });
     });
@@ -49,7 +48,7 @@ export const fetchAll = () => {
   return (dispatch) => {
     moviesDataService.getAllMovies().then((movies) => {
       dispatch({
-        type: "movies/fetchAll",
+        type: "movies/fetch",
         payload: movies.data,
       });
     });
@@ -60,7 +59,7 @@ export const searchByTitle = (title) => {
   return (dispatch) => {
     moviesDataService.searchByTitle(title).then((movies) => {
       dispatch({
-        type: "movies/searchByTitle",
+        type: "movies/fetch",
         payload: movies.data,
       });
     });

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { useFormik, Field, Formik } from "formik";
 import { connect } from "react-redux";
 import { updateMovieInfo } from "../../store/reducers/selectedMovie/selectedMovieActions";
+import * as Yup from 'yup';
 
 function EditPopup({ updateMovieInfo, onClose, movie }) {
   const handleEdit = (values) => {
@@ -10,27 +11,21 @@ function EditPopup({ updateMovieInfo, onClose, movie }) {
     onClose();
   };
 
-  const validate = (values) => {
-    const errors = {};
-    if (values?.title?.length < 2) {
-      errors.title = "Must be 2 characters or more";
-    }
-    debugger;
-    if (
-      !values?.poster_path?.includes("http") &&
-      formik.initialValues.poster_path === undefined
-    ) {
-      errors.poster_path = "Poster path must be a link";
-    }
-
-    if (
-      values?.overview?.length < 15 &&
-      formik.initialValues.overview === undefined
-    ) {
-      errors.overview = "Must be 15 characters or more";
-    }
-    return errors;
-  };
+  const validationSchema = Yup.object().shape({
+    title: Yup.string()
+      .min(2, 'Too Short!')
+      .max(50, 'Too Long!')
+      .required('Required'),
+    release_date: Yup.string()
+      .required('Required'),
+    poster_path: Yup.string().required('Required'),
+    overview: Yup.string()
+      .min(2, 'Too Short!')
+      .max(150, 'Too Long!')
+      .required('Required'),
+    runtime: Yup.string()
+      .required('Required')
+  });
 
   const formik = useFormik({
     initialValues: {
@@ -43,7 +38,7 @@ function EditPopup({ updateMovieInfo, onClose, movie }) {
       runtime: movie.runtime,
     },
     enableReinitialize: true,
-    validate,
+    validationSchema: validationSchema,
     onSubmit: (values) => {
       handleEdit(values);
       alert(JSON.stringify(values, null, 2));
@@ -78,7 +73,7 @@ function EditPopup({ updateMovieInfo, onClose, movie }) {
                   onChange={formik.handleChange}
                   value={formik.values.title}
                 />
-                {formik.errors.title ? <div>{formik.errors.title}</div> : null}
+                {formik.errors.title ? <div className="error">{formik.errors.title}</div> : null}
               </div>
               <div className="input-add-wrapper">
                 <p className="input-title">RELEASE DATE</p>
@@ -91,7 +86,7 @@ function EditPopup({ updateMovieInfo, onClose, movie }) {
                   value={formik.values.release_date}
                 />
                 {formik.errors.release_date ? (
-                  <div>{formik.errors.release_date}</div>
+                  <div className="error">{formik.errors.release_date}</div>
                 ) : null}
               </div>
               <div className="input-add-wrapper">
@@ -105,7 +100,7 @@ function EditPopup({ updateMovieInfo, onClose, movie }) {
                   value={formik.values.poster_path}
                 />
                 {formik.errors.poster_path ? (
-                  <div>{formik.errors.poster_path}</div>
+                  <div className="error">{formik.errors.poster_path}</div>
                 ) : null}
               </div>
               <div className="input-add-wrapper">
@@ -130,7 +125,7 @@ function EditPopup({ updateMovieInfo, onClose, movie }) {
                   value={formik.values.overview}
                 />
                 {formik.errors.overview ? (
-                  <div>{formik.errors.overview}</div>
+                  <div className="error">{formik.errors.overview}</div>
                 ) : null}
               </div>
               <div className="input-add-wrapper">
@@ -144,7 +139,7 @@ function EditPopup({ updateMovieInfo, onClose, movie }) {
                   value={formik.values.runtime}
                 />
                 {formik.errors.runtime ? (
-                  <div>{formik.errors.runtime}</div>
+                  <div className="error">{formik.errors.runtime}</div>
                 ) : null}
               </div>
               <div className="buttons-wrapper">
