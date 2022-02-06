@@ -6,7 +6,6 @@ class MoviesDataService {
   }
 
   sortAllByReleaseDateASC() {
-    debugger;
     return http.get("/movies?sortBy=release_date&sortOrder=asc");
   }
 
@@ -15,20 +14,19 @@ class MoviesDataService {
   }
 
   sortByField(fieldName) {
-    return http.get("/movies?sortBy=" + fieldName + "&sortOrder=asc");
+    return http.get(`/movies?sortBy=${fieldName}&sortOrder=asc`);
   }
 
   searchByGenre(genre) {
-    return http.get("/movies?searchBy=title&filter=" + genre);
+    return http.get(`/movies?searchBy=title&filter=${genre}`);
   }
 
   searchByTitle(title) {
-    debugger;
-    return http.get("/movies?search=" + title + "&searchBy=title");
+    return http.get(`/movies?search=${title}&searchBy=title`);
   }
 
   getMovieById(id) {
-    return http.get("/movies/" + id);
+    return http.get(`/movies/ ${id}`);
   }
 
   addMovie(movie) {
@@ -39,7 +37,7 @@ class MoviesDataService {
     return http.put("/movies", movie);
   }
   deleteMovie(id) {
-    return http.delete("/movies/" + id);
+    return http.delete(`/movies/ ${id}`);
   }
 }
 export default new MoviesDataService();

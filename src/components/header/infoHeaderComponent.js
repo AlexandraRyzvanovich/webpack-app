@@ -4,8 +4,6 @@ import useMovieInfo from "../../hooks/useMovieInfo";
 import LogoComponent from "./logoComponent";
 
 function InfoHeader(props) {
-  useMovieInfo(props.movie);
-
   return (
     <header className="header-info">
       <div className="header-icons-wrapper">

@@ -62,7 +62,7 @@ function MovieAppContainer({
       <HeaderContainer
         onOpen={handleToggleAddPopup}
         onSearch={handleSearch}
-        id={movieId} //set id
+        id={movieId}
         onClearSelection={() => {
           setisCommmonHeaderOpened(true);
         }}

@@ -12,10 +12,3 @@ const useMovieInfo = (selectedMovie) => {
 
 export default useMovieInfo;
 
-// const useMovieInfo = (movie) => {
-// const selectedMovie = useSelector((state) => state.selectedMovie);
-// const dispatch = useDispatch();
-// useEffect(() => {
-// dispatch(fetchMovieById());
-//   }, []);
-// };

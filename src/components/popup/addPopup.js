@@ -5,15 +5,9 @@ import { connect } from "react-redux";
 import { useFormik, Field, Formik } from "formik";
 import SelectField from "./CustomSelect";
 import PropTypes from "prop-types";
+import * as Yup from 'yup';
 
 function AddPopup({ addMovie, onClose }) {
-  const [title, setTitle] = useState("");
-  const [release_date, setReleaseDate] = useState("");
-  const [poster_path, setPosterPath] = useState("");
-  const [genres, setGenres] = useState([]);
-  const [overview, setOverview] = useState("");
-  const [runtime, setRuntime] = useState();
-
   const options = [
     { value: "Horror", label: "Horror" },
     { value: "Documentarie", label: "Documentarie" },
@@ -21,50 +15,37 @@ function AddPopup({ addMovie, onClose }) {
     { value: "Adventure", label: "Adventure" },
   ];
 
+  const validationSchema = Yup.object().shape({
+    title: Yup.string()
+      .min(2, 'Too Short!')
+      .max(50, 'Too Long!')
+      .required('Required'),
+    release_date: Yup.string()
+      .required('Required'),
+    poster_path: Yup.string().required('Required'),
+    overview: Yup.string()
+      .min(2, 'Too Short!')
+      .max(150, 'Too Long!')
+      .required('Required'),
+    runtime: Yup.string()
+      .required('Required')
+  });
+
   const handleAddMovie = (values) => {
     addMovie(values);
     onClose();
   };
 
-  const validate = (values) => {
-    const errors = {};
-    if (!values.title) {
-      errors.title = "Required";
-    } else if (values.title.length > 15) {
-      errors.title = "Must be 15 characters or less";
-    }
-    if (!values.release_date) {
-      errors.release_date = "Required";
-    }
-
-    if (!values.poster_path) {
-      errors.poster_path = "Required";
-    } else if (!values.poster_path.includes("http")) {
-      errors.poster_path = "Poster path must be a link";
-    }
-
-    if (!values.overview) {
-      errors.overview = "Required";
-    } else if (values.overview.length > 15) {
-      errors.overview = "Must be 15 characters or less";
-    }
-    if (!values.runtime) {
-      errors.runtime = "Required";
-    }
-
-    return errors;
-  };
-
   const formik = useFormik({
     initialValues: {
-      title,
-      release_date,
-      poster_path,
-      genres,
-      overview,
-      runtime,
+      title: '',
+      release_date: '',
+      poster_path: '',
+      genres: '',
+      overview: '',
+      runtime: '',
     },
-    validate,
+    validationSchema: validationSchema,
     onSubmit: (values) => {
       handleAddMovie(values);
       alert(JSON.stringify(values, null, 2));
@@ -95,7 +76,7 @@ function AddPopup({ addMovie, onClose }) {
                   onChange={formik.handleChange}
                   value={formik.values.title}
                 />
-                {formik.errors.title ? <div>{formik.errors.title}</div> : null}
+                 {formik.errors.title ? <div className="error">{formik.errors.title}</div> : null}
               </div>
               <div className="input-add-wrapper">
                 <p className="input-title">RELEASE DATE</p>
@@ -108,7 +89,7 @@ function AddPopup({ addMovie, onClose }) {
                   value={formik.values.release_date}
                 />
                 {formik.errors.release_date ? (
-                  <div>{formik.errors.release_date}</div>
+                  <div className="error">{formik.errors.release_date}</div>
                 ) : null}
               </div>
               <div className="input-add-wrapper">
@@ -122,7 +103,7 @@ function AddPopup({ addMovie, onClose }) {
                   value={formik.values.poster_path}
                 />
                 {formik.errors.poster_path ? (
-                  <div>{formik.errors.poster_path}</div>
+                  <div className="error">{formik.errors.poster_path}</div>
                 ) : null}
               </div>
               <div className="input-add-wrapper">
@@ -133,7 +114,6 @@ function AddPopup({ addMovie, onClose }) {
                   id="genres"
                   options={options}
                   value={formik.values.genres}
-                  // onChange={formik.handleChange}
                 />
               </div>
               <div className="input-add-wrapper">
@@ -147,7 +127,7 @@ function AddPopup({ addMovie, onClose }) {
                   value={formik.values.overview}
                 />
                 {formik.errors.overview ? (
-                  <div>{formik.errors.overview}</div>
+                  <div className="error">{formik.errors.overview}</div>
                 ) : null}
               </div>
               <div className="input-add-wrapper">
@@ -161,7 +141,7 @@ function AddPopup({ addMovie, onClose }) {
                   value={formik.values.runtime}
                 />
                 {formik.errors.runtime ? (
-                  <div>{formik.errors.runtime}</div>
+                  <div className="error">{formik.errors.runtime}</div>
                 ) : null}
               </div>
               <div className="buttons-wrapper">
