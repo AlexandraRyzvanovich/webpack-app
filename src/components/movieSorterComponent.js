@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { useCallback } from "react";
 
@@ -11,7 +11,7 @@ import {
 } from "../store/reducers/movies/moviesActions";
 
 import "./../styles/movieListHeader.scss";
-import { Link, useRouteMatch } from "react-router-dom";
+import { Link,  useParams } from "react-router-dom";
 
 function MovieSorterComponent({
   searchByGenre,
@@ -20,6 +20,10 @@ function MovieSorterComponent({
   sortAllByField,
   fetchAll,
 }) {
+  const path = "/movies/sort/"
+  useEffect(() => {
+    handleFetchByType();
+  }, []);
   const handleSearchByDocumentary = useCallback(() => {
     searchByGenre("documentary");
   }, []);
@@ -38,8 +42,22 @@ function MovieSorterComponent({
   const handleFetchByReleaseDateDESC = useCallback(() => {
     sortAllByReleaseDateDESC();
   }, []);
-
-  const { path, url } = useRouteMatch();
+  const { type } = useParams();
+  const handleFetchByType = () => {
+    if (type === undefined) {
+      fetchAll();
+    } else if (type === "documentary") {
+      handleSearchByDocumentary();
+    } else if (type === "comedy") {
+      handleSearchByComedy();
+    } else if(type === "dateASC") {
+      handleFetchByReleaseDateASC();
+    } else if(type === "dateDESC") {
+      handleFetchByReleaseDateDESC
+    } else if(type === "title") {
+      sortAllByField("title")
+    }
+  };
 
   return (
     <div className="list-header">

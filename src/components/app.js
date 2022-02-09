@@ -1,6 +1,11 @@
 import React from "react";
 
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  useParams,
+} from "react-router-dom";
 import "./../styles/app.scss";
 import ErrorBoundary from "./errorBoundary";
 import FooterComponent from "./footerComponent";
@@ -12,17 +17,28 @@ import "./../styles/popup.scss";
 import "./../styles/movie.scss";
 import "./../styles/infoHeader.scss";
 import movieSorterComponent from "./movieSorterComponent";
+import searchComponent from "./header/searchComponent";
+import MovieComponent from "./movieComponent";
 
 function App() {
   return (
-    <Router basename="/app">
-    <ErrorBoundary>
-      <MovieAppContainer />
-      <FooterComponent />
-      <Switch>
-          <Route path="/app/documentary" component={movieSorterComponent}/>
+    <Router>
+      <ErrorBoundary>
+        <MovieAppContainer />
+        <FooterComponent />
+        <Switch>
+          <Route path="/movies/sort/:type" component={movieSorterComponent} />
         </Switch>
-    </ErrorBoundary>
+        <Switch>
+          <Route
+            path={"/movies/search/:titleParam"}
+            component={searchComponent}
+          />
+        </Switch>
+        <Switch>
+          <Route path={"/movies/info/:idParam"} component={MovieComponent} />
+        </Switch>
+      </ErrorBoundary>
     </Router>
   );
 }

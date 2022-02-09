@@ -14,6 +14,7 @@ import {
 
 import HeaderContainer from "./header/headerContainer";
 import PopupContainer from "./popup/popupContainer";
+import { useHistory } from "react-router";
 
 function MovieAppContainer({
   fetchAll,
@@ -32,9 +33,12 @@ function MovieAppContainer({
     fetchAll();
   }, []);
 
+  const history = useHistory();
+  debugger
   const handleGetMovieById = (id) => {
     fetchMovieById(id);
     setIsCommonHeaderOpened(false);
+    history.push(`/movies/info/${id}`);
   };
 
   const handleToggleAddPopup = () => {
