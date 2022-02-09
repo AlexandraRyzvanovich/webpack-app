@@ -20,7 +20,7 @@ function MovieListContainer(props) {
 }
 
 MovieListContainer.propTypes = {
-  movies: PropTypes.array.isRequired,
+  movies: PropTypes.object.isRequired,
   onGetMovieInfo: PropTypes.func.isRequired,
   onEdit: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,

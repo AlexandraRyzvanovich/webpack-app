@@ -11,6 +11,7 @@ import {
 } from "../store/reducers/movies/moviesActions";
 
 import "./../styles/movieListHeader.scss";
+import { Link, useRouteMatch } from "react-router-dom";
 
 function MovieSorterComponent({
   searchByGenre,
@@ -19,7 +20,7 @@ function MovieSorterComponent({
   sortAllByField,
   fetchAll,
 }) {
-  const handleSearchByDocumentory = useCallback(() => {
+  const handleSearchByDocumentary = useCallback(() => {
     searchByGenre("documentary");
   }, []);
 
@@ -38,17 +39,25 @@ function MovieSorterComponent({
     sortAllByReleaseDateDESC();
   }, []);
 
+  const { path, url } = useRouteMatch();
+
   return (
     <div className="list-header">
       <div className="buttons-left-wrapper ">
-        <button id="all" name="all" onClick={handleFetchAll}>
-          <p>ALL</p>
+        <button id="all" name="all">
+          <Link to={`${path}`} onClick={handleFetchAll}>
+            <p>ALL</p>
+          </Link>
         </button>
-        <button type="button" onClick={handleSearchByDocumentory}>
-          <p>DOCUMENTARY</p>
+        <button type="button">
+          <Link to={`${path}documentary`} onClick={handleSearchByDocumentary}>
+            <p>DOCUMENTARY</p>
+          </Link>
         </button>
-        <button type="button" onClick={handleSearchByComedy}>
-          <p>COMEDY</p>
+        <button type="button">
+          <Link to={`${path}comedy`} onClick={handleSearchByComedy}>
+            <p>COMEDY</p>
+          </Link>
         </button>
       </div>
       <div className="buttons-rigth-wrapper">
@@ -56,23 +65,32 @@ function MovieSorterComponent({
           <p>SORT BY</p>
         </button>
         <div className="dropdown-sort">
-          <button
-            className="dropbtnselect"
-            onClick={handleFetchByReleaseDateASC}
-          >
-            <p> RELEASE DATE ASC</p>
+          <button className="dropbtnselect">
+            <Link
+              to={`${path}releasedateASC`}
+              onClick={handleFetchByReleaseDateASC}
+            >
+              <p>RELEASE DATE ASC</p>
+            </Link>
           </button>
           <div className="dropdown-content-sort">
-            <p className="cursor-p" onClick={handleFetchByReleaseDateDESC}>
-              RELEASE DATE DESC
+            <p className="cursor-p">
+              <Link
+                to={`${path}releasedateDESC`}
+                onClick={handleFetchByReleaseDateDESC}
+              >
+                <p> RELEASE DATE DESC</p>
+              </Link>
             </p>
-            <p
-              className="cursor-p"
-              onClick={() => {
-                sortAllByField("title");
-              }}
-            >
-              TITLE
+            <p className="cursor-p">
+              <Link
+                to={`${path}title`}
+                onClick={() => {
+                  sortAllByField("title");
+                }}
+              >
+                <p> TITLE</p>
+              </Link>
             </p>
           </div>
         </div>

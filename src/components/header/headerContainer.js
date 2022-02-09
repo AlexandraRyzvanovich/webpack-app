@@ -16,10 +16,11 @@ function HeaderContainer(props) {
 
 HeaderContainer.propTypes = {
   onOpen: PropTypes.func.isRequired,
-  onClearSelection: PropTypes.func.isRequired,
+  onSearch: PropTypes.func.isRequired,
   id: PropTypes.number,
-  onOpenSearch: PropTypes.func,
-  movie: PropTypes.object,
+  movie: PropTypes.array.isRequired,
+  onOpenCommonHeader: PropTypes.bool.isRequired,
+  onClearSelection: PropTypes.func.isRequired,
 };
 
 export default HeaderContainer;

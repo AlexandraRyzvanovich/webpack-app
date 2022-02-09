@@ -36,6 +36,6 @@ PopupContainer.propTypes = {
   onCloseAdd: PropTypes.func.isRequired,
   onCloseEdit: PropTypes.func.isRequired,
   onCloseDelete: PropTypes.func.isRequired,
-  movie: PropTypes.object,
+  movie: PropTypes.array.isRequired,
 };
 export default PopupContainer;
