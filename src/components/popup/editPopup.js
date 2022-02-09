@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
-import { useFormik, Field, Formik } from "formik";
+import { useFormik, Formik } from "formik";
 import { connect } from "react-redux";
 import { updateMovieInfo } from "../../store/reducers/selectedMovie/selectedMovieActions";
 import * as Yup from 'yup';

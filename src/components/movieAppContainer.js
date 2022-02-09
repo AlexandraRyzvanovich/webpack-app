@@ -26,7 +26,7 @@ function MovieAppContainer({
   const [isEditPopupOpened, setIsEditPopupOpened] = useState(false);
   const [isDeletePopupOpened, setIsDeletePopupOpened] = useState(false);
   const [movieId, setMovieId] = useState();
-  const [isCommmonHeaderOpened, setisCommmonHeaderOpened] = useState(true);
+  const [isCommonHeaderOpened, setIsCommonHeaderOpened] = useState(true);
 
   useEffect(() => {
     fetchAll();
@@ -34,7 +34,7 @@ function MovieAppContainer({
 
   const handleGetMovieById = (id) => {
     fetchMovieById(id);
-    setisCommmonHeaderOpened(false);
+    setIsCommonHeaderOpened(false);
   };
 
   const handleToggleAddPopup = () => {
@@ -64,10 +64,10 @@ function MovieAppContainer({
         onSearch={handleSearch}
         id={movieId}
         onClearSelection={() => {
-          setisCommmonHeaderOpened(true);
+          setIsCommonHeaderOpened(true);
         }}
         movie={selectedMovie}
-        onOpenCommonHeader={isCommmonHeaderOpened}
+        onOpenCommonHeader={isCommonHeaderOpened}
       />
       <MovieListContainer
         movies={movies}

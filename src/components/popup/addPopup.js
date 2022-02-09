@@ -1,34 +1,31 @@
 import React from "react";
-import { useState } from "react";
 import { addMovie } from "../../store/reducers/selectedMovie/selectedMovieActions";
 import { connect } from "react-redux";
 import { useFormik, Field, Formik } from "formik";
 import SelectField from "./CustomSelect";
 import PropTypes from "prop-types";
-import * as Yup from 'yup';
+import * as Yup from "yup";
 
 function AddPopup({ addMovie, onClose }) {
+
   const options = [
     { value: "Horror", label: "Horror" },
-    { value: "Documentarie", label: "Documentarie" },
+    { value: "Documentary", label: "Documentary" },
     { value: "Comedy", label: "Comedy" },
     { value: "Adventure", label: "Adventure" },
   ];
-
   const validationSchema = Yup.object().shape({
     title: Yup.string()
-      .min(2, 'Too Short!')
-      .max(50, 'Too Long!')
-      .required('Required'),
-    release_date: Yup.string()
-      .required('Required'),
-    poster_path: Yup.string().required('Required'),
+      .min(2, "Too Short!")
+      .max(50, "Too Long!")
+      .required("Required"),
+    release_date: Yup.string().required("Required"),
+    poster_path: Yup.string().required("Required"),
     overview: Yup.string()
-      .min(2, 'Too Short!')
-      .max(150, 'Too Long!')
-      .required('Required'),
-    runtime: Yup.string()
-      .required('Required')
+      .min(2, "Too Short!")
+      .max(150, "Too Long!")
+      .required("Required"),
+    runtime: Yup.string().required("Required"),
   });
 
   const handleAddMovie = (values) => {
@@ -38,12 +35,12 @@ function AddPopup({ addMovie, onClose }) {
 
   const formik = useFormik({
     initialValues: {
-      title: '',
-      release_date: '',
-      poster_path: '',
-      genres: '',
-      overview: '',
-      runtime: '',
+      title: "",
+      release_date: "",
+      poster_path: "",
+      genres: "",
+      overview: "",
+      runtime: "",
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
@@ -76,7 +73,9 @@ function AddPopup({ addMovie, onClose }) {
                   onChange={formik.handleChange}
                   value={formik.values.title}
                 />
-                 {formik.errors.title ? <div className="error">{formik.errors.title}</div> : null}
+                {formik.errors.title ? (
+                  <div className="error">{formik.errors.title}</div>
+                ) : null}
               </div>
               <div className="input-add-wrapper">
                 <p className="input-title">RELEASE DATE</p>

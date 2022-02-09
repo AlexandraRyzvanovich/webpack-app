@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { useCallback } from "react";
 import { searchByTitle } from "../../store/reducers/movies/moviesActions";
 
 import "./../../styles/search.scss";
 
 function SearchComponent({ searchByTitle }) {
   const [title, setTitle] = useState("");
-  const hanleOnChange = (value) => {
+  const handleOnChange = (value) => {
     setTitle(value);
   };
 
@@ -22,7 +21,7 @@ function SearchComponent({ searchByTitle }) {
           placeholder="What do you want to watch?"
           type="input"
           className="input-search"
-          onChange={(e) => hanleOnChange(e.target.value)}
+          onChange={(e) => handleOnChange(e.target.value)}
         ></input>
         <button
           type="submit"

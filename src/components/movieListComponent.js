@@ -32,7 +32,6 @@ MovieListComponent.propTypes = {
   onGetMovieInfo: PropTypes.func.isRequired,
   onEdit: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
-  size: PropTypes.func.isRequired,
 };
 
 export default MovieListComponent;

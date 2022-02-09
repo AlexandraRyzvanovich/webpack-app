@@ -57,7 +57,7 @@ MovieComponent.propTypes = {
   poster_path: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   genres: PropTypes.arrayOf(String),
-  release_date: PropTypes.number.isRequired,
+  release_date: PropTypes.string.isRequired,
   onGetMovieInfo: PropTypes.func,
   onEdit: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,

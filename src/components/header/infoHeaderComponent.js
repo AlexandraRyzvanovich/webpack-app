@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import useMovieInfo from "../../hooks/useMovieInfo";
 import LogoComponent from "./logoComponent";
 
 function InfoHeader(props) {
