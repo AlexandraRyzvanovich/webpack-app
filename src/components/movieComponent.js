@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
+import {useParams} from "react-router-dom";
 
 function MovieComponent(props) {
   const {
@@ -12,8 +13,14 @@ function MovieComponent(props) {
     onDelete,
     id,
   } = props;
+  const {idParam} = useParams();
+  useEffect(() => {
+    if(idParam) {
+      () => onGetMovieInfo(idParam)}
+  }, []); 
+
   const handleClick = () => {
-    onGetMovieInfo(id);
+    onGetMovieInfo(idParam != undefined ? idParam : id);
   };
   return (
     <>
@@ -54,10 +61,10 @@ function MovieComponent(props) {
 }
 
 MovieComponent.propTypes = {
-  poster_path: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
+  poster_path: PropTypes.string,
+  title: PropTypes.string,
   genres: PropTypes.arrayOf(String),
-  release_date: PropTypes.string.isRequired,
+  release_date: PropTypes,
   onGetMovieInfo: PropTypes.func,
   onEdit: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
