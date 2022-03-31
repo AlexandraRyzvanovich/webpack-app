@@ -14,7 +14,6 @@ function MovieComponent(props) {
     id,
   } = props;
   const {idParam} = useParams();
-  debugger
   useEffect(() => {
     if(idParam) {
       () => onGetMovieInfo(idParam)}

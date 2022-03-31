@@ -34,7 +34,6 @@ function MovieAppContainer({
   }, []);
 
   const history = useHistory();
-  debugger
   const handleGetMovieById = (id) => {
     fetchMovieById(id);
     setIsCommonHeaderOpened(false);

@@ -21,6 +21,7 @@ function MovieSorterComponent({
   fetchAll,
 }) {
   const path = "/movies/sort/"
+  const { type } = useParams();
   useEffect(() => {
     handleFetchByType();
   }, []);
@@ -42,7 +43,6 @@ function MovieSorterComponent({
   const handleFetchByReleaseDateDESC = useCallback(() => {
     sortAllByReleaseDateDESC();
   }, []);
-  const { type } = useParams();
   const handleFetchByType = () => {
     if (type === undefined) {
       fetchAll();
@@ -53,7 +53,7 @@ function MovieSorterComponent({
     } else if(type === "dateASC") {
       handleFetchByReleaseDateASC();
     } else if(type === "dateDESC") {
-      handleFetchByReleaseDateDESC
+      handleFetchByReleaseDateDESC()
     } else if(type === "title") {
       sortAllByField("title")
     }

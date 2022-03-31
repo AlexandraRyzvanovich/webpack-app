@@ -22,7 +22,7 @@ import MovieComponent from "./movieComponent";
 
 function App() {
   return (
-    <Router>
+    <Router basename="/movies/">
       <ErrorBoundary>
         <MovieAppContainer />
         <FooterComponent />
